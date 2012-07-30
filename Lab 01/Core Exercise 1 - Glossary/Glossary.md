@@ -10,27 +10,28 @@ An artifact is any product that has been created during the development and main
 
 A class is a template for defining the characteristics and operation of an object instances, listing all fields, properties, constructors and methods that the object can have.
 
-    class Rectangle {
-        private:
-            /* fields */
-            int _x;
-            int _y;
+```c++
+class Rectangle {
+    private:
+        /* fields */
+        int _x;
+        int _y;
 
-        public:
-            /* constructor */
-            Rectangle(int x, int y) { 
-                _x = x;
-                _y = y;
-            }
+    public:
+        /* constructor */
+        Rectangle(int x, int y) { 
+            _x = x;
+            _y = y;
+        }
 
-            /* accessor methods */
-            int getX() { return _x; }
-            int getY() { return _y; }
+        /* accessor methods */
+        int getX() { return _x; }
+        int getY() { return _y; }
 
-            /* methods */
-            int area() { return (_x * _y); }
-    }
-
+        /* methods */
+        int area() { return (_x * _y); }
+}
+```
 #### Fields
 
 A field of a class is a declaration of an object's ability to store data. These fields are typically private to the class and can only be accessed using accessor methods or properties.
