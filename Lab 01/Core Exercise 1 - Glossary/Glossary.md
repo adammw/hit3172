@@ -8,12 +8,12 @@ An artifact is any product that has been created during the development and main
 
 ### Class
 
-A class is a template for defining the characteristics and operation of an object instances, listing all fields, properties, constructors and methods that the object can have.
+A class is a template for defining the characteristics and operation of an object, listing all fields, properties, constructors and methods that the object can have. The class is also responsible for the creation of new objects.
 
 ```c++
 class Rectangle {
     private:
-        /* fields */
+        /* private data fields */
         int _x;
         int _y;
 
@@ -24,14 +24,21 @@ class Rectangle {
             _y = y;
         }
 
-        /* accessor methods */
+        /* accessor methods ("getters") */
         int getX() { return _x; }
         int getY() { return _y; }
+
+        /* mutator methods ("setters") */
+        void setX(int x) { _x = x; }
+        void setY(int y) { _y = y; }
 
         /* methods */
         int area() { return (_x * _y); }
 }
 ```
+
+**Note:** typically in C++, the class declaration is listed in a header file, and the class implentation is listed separately. When this is done, the class must be explictly refered to in the form of `<return_type> <class_name>::<method>(<parameters>) { ... }`
+
 #### Fields
 
 A field of a class is a declaration of an object's ability to store data. These fields are typically private to the class and can only be accessed using accessor methods or properties.
@@ -43,25 +50,92 @@ Accessor methods or "Getters" only return the value of a data field; Mutator met
 
 #### Constructors
 
-The constructor is called when a new object is created to initalise all the fields of an object and do any other set-up or processing required for the creation of a new object.
+The constructor is called when a new object is created to initalise all the fields of an object and do any other set-up or processing required for the creation of a new object. A constructor may contain parameters to initially set the internal state of the object to the desired values rather than to first initialise to static constants that then must be overwritten using properties. 
+For example in a card game, a Card class may have a constructor with parameters for which suit and rank of card it should represent. 
 
 #### Methods
 
 Methods give an object of a class it's ability to *do* something, they can implement functional code and processing of data of it's own instance and other objects.
 
+#### Static Members
+
+A static member of a class is something that is attached to the class's class object rather than being a part of each object. There is usually only one class object for a bunch of objects, this means that the field or method is essentially shared between all objects.
+
 ### Object
 
-An object is an instance of a class. While a class defines the characteristics and operation of a type of objects, an object contains it's own data to make the operations relevant.
+An object is an instance of a class. While a class defines the characteristics and operation of a type of objects, an object contains it's own data to make the operations relevant. Each object is distinct and unique, calling a method or changing the property of one object will not change every other object of that class. The object is central to the concept of Object-Oriented programming - the idea being that rather than separate by data and functions like in procedural programming, we can design programs around Objects that we can see in the real (or imaginary) world, and use these Objects as the building blocks of our program that encapsulate their own data and state. 
 
 #### Declaring variables to refer to objects
 
+The common method of refering to objects is to hold onto pointers to them.
+
+```c++
+Rectangle * my_rect;
+```
+
 #### Creating an object
+
+Objects are created by their class in two steps, first the class must allocate enough memory to hold the object, and then it must initalise the object. In C++ this is done as one step when calling the class constructor with the 'new' keyword. 
+
+```c++
+my_rect = new Rectangle(1,2);
+```
 
 #### Method Calls (How to pass a message to an object)
 
+Method calls are done "on" the object itself, so when using pointers to objects, they must be dereferenced. C++ allows us to use the `->` operator to call methods on the dereferenced pointer of the object.
+
+```c++
+int area = my_rect->area();
+```
+
 ### Built in types (numeric, text and others)
 
+#### Boolean types
+
+C++ allows for Boolean types to be created using the `bool` datatype.
+
+```c++
+bool isCool = true;
+bool isFinished = false;
+```
+
+#### Numeric types
+
+C++ allows for the same numeric types as C
+
+#### String types
+
+C++ has a special String class for creating and manlipulating String objects in the `std` namespace. C-style strings are still supported.
+
+```c++
+using namespace std;
+string myString("Hello World");
+cout << myString << endl;
+
+// getting the length is easy as it is the same as a method call
+cout << "String Length: " << myString.length() << endl;
+
+// concaternation of strings is built-in
+myString += " Again";
+cout << myString << endl;
+
+// so is comparison
+if (myString == "Hello World Again") {
+    cout << "See?" << endl;
+}
+```
+
 ### Arrays
+
+Arrays are declared in the form `<data_type> <variable_name>[<size>];` the same way as C.
+
+```c++
+using namespace std;
+int my_array[] = {1,2,3,4,5};
+my_array[2] = 0;
+cout << "Element #3 of the array is: " << my_array[2] << endl;
+```
 
 ### Enumerations
 
@@ -69,6 +143,7 @@ Enumerations are variables that can contain only one of a limited set of values.
 
 Sources
 -------
+ * HIT3172 Lectures
  * [Artifact (Software Development) - Wikipedia](http://en.wikipedia.org/wiki/Artifact_(software_development))
  * [Artifact (Stanford Encyclopedia of Philosophy)](http://plato.stanford.edu/entries/artifact/)
  * [Software engineering mini glossary](http://www.idi.ntnu.no/grupper/su/publ/ese/se-defs.html)
