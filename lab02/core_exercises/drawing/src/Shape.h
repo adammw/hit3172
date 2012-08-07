@@ -24,10 +24,14 @@ public:
 	point2d get_position();
 	int get_width();
 	int get_height();
+	float get_x();
+	float get_y();
 	void set_color(color);
 	void set_position(point2d);
 	void set_width(int);
 	void set_height(int);
+	void set_x(float);
+	void set_y(float);
 
 	bool is_at(point2d);
 	void draw();

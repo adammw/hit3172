@@ -8,8 +8,8 @@
 #include "Shape.h"
 
 Shape::Shape() {
-
-	//TODO
+	// Initalise position
+	_position.x = _position.y = 0;
 }
 
 Shape::~Shape() {
@@ -31,6 +31,9 @@ int Shape::get_width() {
 int Shape::get_height() {
 	return _height;
 }
+float Shape::get_x() {
+	return _position.x;
+}
 
 void Shape::set_color(color theColor){
 	_color = theColor;
@@ -44,6 +47,12 @@ void Shape::set_width(int width) {
 void Shape::set_height(int height) {
 	_height = height;
 }
+void Shape::set_x(float x) {
+	_position.x = x;
+}
+void Shape::set_y(float y) {
+	_position.y = y;
+}
 bool Shape::is_at(point2d position) {
 	return (position.x >= _position.x &&
 			position.x < _position.x + _width &&
@@ -51,5 +60,5 @@ bool Shape::is_at(point2d position) {
 			position.y < _position.y + _height);
 }
 void Shape::draw() {
-	draw_rectangle_on_screen(_color, _position.x, _position.y, _width, _height);
+	fill_rectangle(_color, _position.x, _position.y, _width, _height);
 }
