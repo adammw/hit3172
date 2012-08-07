@@ -244,11 +244,17 @@ for (int i = 0; i < 2; i++ ) {
 Identifiers should be clear and name what the class or variable is or contains respectively. They should not start with underscores, and should not be the same as another identifier with different case. Abbreviations should be avoided.
 
 *Class:* Noun in Pascal Case, e.g. `Card`
+
 *Preprocessor Macro:* In All Uppercase, e.g. `CARD_HEIGHT`
+
 *Enumeration Type:* An Abbreviation of what the enum represents in Pascal Case, e.g. `CardRank`
+
 *LocalVariable:* Camel Case, e.g. `myCard`
+
 *Method:* Verbs or verb phrases in Camel Case, e.g. `turnOver`
+
 *Namespace:* Camel Case, e.g. `system`
+
 *Parameter:* A descriptive name clearly identifing purpose in Camel Case, without prefixes, e.g. `value`
 
 Sources
