@@ -141,6 +141,103 @@ cout << "Element #3 of the array is: " << my_array[2] << endl;
 
 Enumerations are variables that can contain only one of a limited set of values. Each value is typically assigned a symbol or name so that it's value can be referenced symbolically and the compiler can decide what underlying values to generate for each symbol during compilation.
 
+Statements
+----------
+
+### Basic Statements
+
+#### Assignment Statement
+Assignments are done with the `=` symbol, with the variable name on the left, and the value you are assigning on the right.
+
+```c++
+my_variable = 55;
+```
+
+#### Method Calling
+
+Methods are called in C++ using the name of the method followed by brackets () with parameters contained within them if nesicarry, separated by a comma.
+
+```c++
+my_method(); /* execute the my_method method with no parameters */
+my_other_method(42, "hello"); /* execute the method with parameters 42 and "hello" */
+```
+
+#### Returning a value 
+
+Returning a value from a function/method is done with the `return` statement.
+
+```c++
+int MyClass::MyMethod()
+{
+    return 55;
+}
+```
+
+### Control Flow Statements
+
+#### If Statement
+
+The if statement is a basic conditional expression that will run the bit of code in the braces (or the next line if there are no braces).
+
+```c++
+if (my_variable == 52) {
+    // execute this code
+}
+```
+
+#### Case Statement
+
+The case statement selects a code path based on the value of the variable. It is mutually-exclusive and exhaustive of all options.
+
+```c++
+switch(my_variable) {
+    case 0: /* this section of code is run if my_variable == 0 */
+        // do something
+        break; /* break is required to tell the compiler where to finish */
+    case 52: /* this section of code is run if my_variable == 52 */
+        // do something else
+        break;
+    default: /* this section of code is run if none of the above conditions are true */
+        // do something else
+}
+```
+
+#### While Loop
+
+A while loop will enter the loop and continue when the condition in the brackets evaluates true.
+
+```c++
+while (running) {
+    // do some task
+}
+```
+
+The code within the curly braces will be executed again and again. It will be stopped only when running is no longer true, or if inside the while block the `break` statement is used. The `continue` statement is used to stop the current execution of the loop but continue again at the start of the loop if the condition is still true.
+
+#### Do ... While Loop
+
+A do...while loop is the same as a while loop except that it is guaranteed to run at least once, the condition is only checked after the first execution of the loop
+
+```c++
+do {
+    // do some task
+} while (running);
+```
+
+#### For Loop
+
+A for loop is a finite loop usually used for counting or iterating over an array of known length.
+The first part of the for loop is the initaliser expression that defines the initial value of a variable, the second part is the conditional expression that must be true for the loop to start and continue looping, and the third part is the expression that increments the value in some way.
+
+```c++
+for (int i = 0; i < 2; i++ ) {
+    cout << "Hello" << endl; // will be printed 2 times
+}
+```
+
+### Language Naming Conventions
+
+
 Sources
 -------
  * HIT3172 Lectures
