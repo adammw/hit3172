@@ -102,7 +102,7 @@ bool isFinished = false;
 
 #### Numeric types
 
-C++ allows for the same numeric types as C
+C++ allows for the same numeric types as C, for example, `int`, `double`, `float`, etc.
 
 #### String types
 
