@@ -102,7 +102,7 @@ bool isFinished = false;
 
 #### Numeric types
 
-C++ allows for the same numeric types as C, for example, `int`, `double`, `float`, etc.
+C++ allows for the same numeric types as C, for example, `int`, `double`, `float`, etc. The size and range of the actual variable depends on the compiler and architecture, except for `char` which is standardised as 8-bits (1 byte).
 
 #### String types
 
@@ -177,10 +177,14 @@ int MyClass::MyMethod()
 
 #### If Statement
 
-The if statement is a basic conditional expression that will run the bit of code in the braces (or the next line if there are no braces).
+The if statement is a basic conditional expression that will run the bit of code in the braces (or the next line if there are no braces). The first condition in an if..else if...else statement is the one that is executed, all others are skipped.
 
 ```c++
 if (my_variable == 52) {
+    // execute this code
+} else if (my_other_variable == 51.555) {
+    // execute this code
+} else {
     // execute this code
 }
 ```
@@ -207,7 +211,7 @@ switch(my_variable) {
 A while loop will enter the loop and continue when the condition in the brackets evaluates true.
 
 ```c++
-while (running) {
+while (running) { /* the condition here is when running is true */
     // do some task
 }
 ```
@@ -221,7 +225,7 @@ A do...while loop is the same as a while loop except that it is guaranteed to ru
 ```c++
 do {
     // do some task
-} while (running);
+} while (my_patience > 52); /* the condition here is when the value of my_patience is greather than 52 */
 ```
 
 #### For Loop
@@ -237,6 +241,15 @@ for (int i = 0; i < 2; i++ ) {
 
 ### Language Naming Conventions
 
+Identifiers should be clear and name what the class or variable is or contains respectively. They should not start with underscores, and should not be the same as another identifier with different case. Abbreviations should be avoided.
+
+*Class:* Noun in Pascal Case, e.g. `Card`
+*Preprocessor Macro:* In All Uppercase, e.g. `CARD_HEIGHT`
+*Enumeration Type:* An Abbreviation of what the enum represents in Pascal Case, e.g. `CardRank`
+*LocalVariable:* Camel Case, e.g. `myCard`
+*Method:* Verbs or verb phrases in Camel Case, e.g. `turnOver`
+*Namespace:* Camel Case, e.g. `system`
+*Parameter:* A descriptive name clearly identifing purpose in Camel Case, without prefixes, e.g. `value`
 
 Sources
 -------
@@ -246,3 +259,4 @@ Sources
  * [Software engineering mini glossary](http://www.idi.ntnu.no/grupper/su/publ/ese/se-defs.html)
  * [Identifying Object-Oriented Classes](http://www.codeproject.com/Articles/9900/Identifying-Object-Oriented-Classes)
  * [Class Tutorial - C++ Documentation](http://www.cplusplus.com/doc/tutorial/classes/)
+ * [Swinburne C++ Coding Recommendations - Swinbrain](http://swinbrain.ict.swin.edu.au/wiki/C_Plus_Plus_coding_recommendations)
