@@ -19,5 +19,8 @@ int main() {
 	cout << "Counter 1: " << counter1->get_value() << endl;
 	cout << "Counter 2: " << counter2->get_value() << endl;
 
+	delete counter1;
+	delete counter2;
+
 	return 0;
 }
