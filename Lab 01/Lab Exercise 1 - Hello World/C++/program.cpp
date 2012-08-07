@@ -8,5 +8,10 @@ int main() {
 	msg1->print();
 	msg2->print();
 	msg3->print();
+
+	delete msg1;
+	delete msg2;
+	delete msg3;
+	
 	return 0;
 }
