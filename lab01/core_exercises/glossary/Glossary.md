@@ -249,7 +249,7 @@ Identifiers should be clear and name what the class or variable is or contains r
 
 *Enumeration Type:* An Abbreviation of what the enum represents in Pascal Case, e.g. `CardRank`
 
-*LocalVariable:* Camel Case, e.g. `myCard`
+*Local Variable:* Camel Case, e.g. `myCard`
 
 *Method:* Verbs or verb phrases in Camel Case, e.g. `turnOver`
 
