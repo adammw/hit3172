@@ -34,7 +34,7 @@ public:
 	void set_y(float);
 
 	bool is_at(point2d);
-	void draw();
+	virtual void draw() = 0;
 };
 
 #endif /* SHAPE_H_ */

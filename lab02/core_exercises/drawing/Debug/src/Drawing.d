@@ -19,7 +19,8 @@ src/Drawing.d src/Drawing.o: ../src/Drawing.cpp ../src/Drawing.h \
   /Users/adam/Dropbox/Swinburne/HIT3172/GitHub/lab02/core_exercises/drawing/lib/Timers.h \
   /Users/adam/Dropbox/Swinburne/HIT3172/GitHub/lab02/core_exercises/drawing/lib/UserInterface.h \
   /Users/adam/Dropbox/Swinburne/HIT3172/GitHub/lab02/core_exercises/drawing/lib/Utils.h \
-  /Users/adam/Dropbox/Swinburne/HIT3172/GitHub/lab02/core_exercises/drawing/lib/Colors.h
+  /Users/adam/Dropbox/Swinburne/HIT3172/GitHub/lab02/core_exercises/drawing/lib/Colors.h \
+  ../src/Rectangle.h ../src/Line.h
 
 ../src/Drawing.h:
 
@@ -64,3 +65,7 @@ src/Drawing.d src/Drawing.o: ../src/Drawing.cpp ../src/Drawing.h \
 /Users/adam/Dropbox/Swinburne/HIT3172/GitHub/lab02/core_exercises/drawing/lib/Utils.h:
 
 /Users/adam/Dropbox/Swinburne/HIT3172/GitHub/lab02/core_exercises/drawing/lib/Colors.h:
+
+../src/Rectangle.h:
+
+../src/Line.h:

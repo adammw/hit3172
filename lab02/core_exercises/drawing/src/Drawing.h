@@ -10,6 +10,8 @@
 
 #include <vector>
 #include "Shape.h"
+#include "Rectangle.h"
+#include "Line.h"
 
 class Drawing {
 private:

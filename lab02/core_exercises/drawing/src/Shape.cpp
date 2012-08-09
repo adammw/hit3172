@@ -59,6 +59,3 @@ bool Shape::is_at(point2d position) {
 			position.y >= _position.y &&
 			position.y < _position.y + _height);
 }
-void Shape::draw() {
-	fill_rectangle(_color, _position.x, _position.y, _width, _height);
-}

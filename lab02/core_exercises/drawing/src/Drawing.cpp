@@ -13,7 +13,9 @@ Drawing::Drawing() {
 }
 
 Drawing::~Drawing() {
-	// TODO Auto-generated destructor stub
+	for ( size_t i = 0; i < _shapes.size(); i++ ) {
+		delete _shapes[i];
+	}
 }
 
 Shape* Drawing::get_seleted_shape() {
@@ -26,14 +28,14 @@ void Drawing::add_shape(Shape* shape) {
 
 void Drawing::select_shape_at_point(point2d point) {
 	_selected_shape = NULL;
-	for ( int i = 0; i < _shapes.size(); i++ ) {
+	for ( size_t i = 0; i < _shapes.size(); i++ ) {
 		if (_shapes[i]->is_at(point))
 			_selected_shape = _shapes[i];
 	}
 }
 
 void Drawing::draw() {
-	for ( int i = 0; i < _shapes.size(); i++ ) {
+	for ( size_t i = 0; i < _shapes.size(); i++ ) {
 		_shapes[i]->draw();
 	}
 }

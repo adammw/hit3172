@@ -19,7 +19,7 @@ src/main.d src/main.o: ../src/main.cpp ../src/Shape.h \
   /Users/adam/Dropbox/Swinburne/HIT3172/GitHub/lab02/core_exercises/drawing/lib/UserInterface.h \
   /Users/adam/Dropbox/Swinburne/HIT3172/GitHub/lab02/core_exercises/drawing/lib/Utils.h \
   /Users/adam/Dropbox/Swinburne/HIT3172/GitHub/lab02/core_exercises/drawing/lib/Colors.h \
-  ../src/Drawing.h
+  ../src/Drawing.h ../src/Rectangle.h ../src/Line.h
 
 ../src/Shape.h:
 
@@ -64,3 +64,7 @@ src/main.d src/main.o: ../src/main.cpp ../src/Shape.h \
 /Users/adam/Dropbox/Swinburne/HIT3172/GitHub/lab02/core_exercises/drawing/lib/Colors.h:
 
 ../src/Drawing.h:
+
+../src/Rectangle.h:
+
+../src/Line.h:
