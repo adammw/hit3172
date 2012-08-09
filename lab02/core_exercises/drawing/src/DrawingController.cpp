@@ -23,6 +23,22 @@ void DrawingController::set_controlling(Drawing* drawing) {
 
 void DrawingController::draw() {
 	_controlling->draw();
+
+	const char * text;
+	switch(_adding){
+	case DRAWING_ELEMENT_RECTANGLE:
+		text = "Drawing Rectangles";
+		break;
+	case DRAWING_ELEMENT_LINE:
+		text = "Drawing Lines";
+		break;
+	case DRAWING_ELEMENT_ELLIPSE:
+		text = "Drawing Ellipses";
+		break;
+	default:
+		text = "Drawing Unknown Shape";
+	}
+	draw_text_lines_with_font_named(text, color_black, color_transparent, "mavenpro", ALIGN_LEFT, 10, screen_height() - 26, screen_width() - 20, 16);
 }
 
 void DrawingController::handle_input() {

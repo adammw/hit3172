@@ -25,6 +25,8 @@ int main() {
 	open_audio();
 	open_graphics_window("Drawing", 800, 600);
 	load_default_colors();
+	load_font_named("mavenpro","maven_pro_regular.ttf",16);
+
 
 	Drawing* drawing = new Drawing();
 	DrawingController *controller = new DrawingController(drawing);
