@@ -13,6 +13,7 @@
 class Line: public Shape {
 public:
 	void draw();
+	void highlight();
 };
 
 #endif /* LINE_H_ */

@@ -14,6 +14,7 @@ class Rectangle: public Shape {
 public:
 	void make_square();
 	void draw();
+	void highlight();
 };
 
 #endif /* RECTANGLE_H_ */

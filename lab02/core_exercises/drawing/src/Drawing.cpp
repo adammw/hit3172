@@ -46,6 +46,8 @@ void Drawing::draw() {
 	clear_screen(_background_color);
 
 	for ( size_t i = 0; i < _shapes.size(); i++ ) {
+		if (_selected_shape && _shapes[i] == _selected_shape)
+			_selected_shape->highlight();
 		_shapes[i]->draw();
 	}
 }

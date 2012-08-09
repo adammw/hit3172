@@ -20,6 +20,10 @@ color Shape::get_color() {
 	return _color;
 }
 
+color Shape::get_highlight_color() {
+	return _highlight_color;
+}
+
 point2d Shape::get_position() {
 	return _position;
 }
@@ -35,8 +39,12 @@ float Shape::get_x() {
 	return _position.x;
 }
 
-void Shape::set_color(color theColor){
-	_color = theColor;
+void Shape::set_color(color c) {
+	_color = c;
+	calculate_highlight_color();
+}
+void Shape::set_highlight_color(color c) {
+	_highlight_color = c;
 }
 void Shape::set_position(point2d position) {
 	_position = position;
@@ -58,4 +66,13 @@ bool Shape::is_at(point2d position) {
 			position.x < _position.x + _width &&
 			position.y >= _position.y &&
 			position.y < _position.y + _height);
+}
+void Shape::calculate_highlight_color() {
+	float hue = hue_of(_color),
+		  sat = saturation_of(_color),
+		  bri = brightness_of(_color);
+
+	bri -= 0.2;
+
+	_highlight_color = hsbcolor(hue, sat, bri);
 }

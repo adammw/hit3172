@@ -13,6 +13,7 @@
 class Ellipse: public Shape {
 public:
 	void draw();
+	void highlight();
 };
 
 #endif /* ELLIPSE_H_ */
