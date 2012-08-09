@@ -29,6 +29,9 @@ public:
 	void add_shape(Shape*);
 	void select_shape_at_point(point2d);
 	void draw();
+	void delete_selected_shape();
+	void move_selected_shape_up();
+	void move_selected_shape_down();
 };
 
 #endif /* DRAWING_H_ */

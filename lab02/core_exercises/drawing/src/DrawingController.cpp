@@ -49,6 +49,15 @@ void DrawingController::handle_input() {
 			change_color();
 		}
 	}
+	/* delete/backspace key removes shape */
+	if (key_typed(VK_DELETE) || key_typed(VK_BACKSPACE)) {
+		_controlling->delete_selected_shape();
+	}
+	/* page up/down controls layering */
+	if (key_typed(VK_PAGEDOWN))
+		_controlling->move_selected_shape_down();
+	if (key_typed(VK_PAGEUP))
+		_controlling->move_selected_shape_up();
 
 	if (key_down(VK_LSHIFT) || key_down(VK_RSHIFT)) {
 		/* Arrow keys + Shift resize shape */
