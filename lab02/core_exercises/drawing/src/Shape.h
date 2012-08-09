@@ -11,7 +11,7 @@
 #include "SwinGame.h"
 
 class Shape {
-private:
+protected:
 	color 	_color;
 	point2d _position;
 	int 	_width;

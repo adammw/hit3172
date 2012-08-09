@@ -5,16 +5,22 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../src/Drawing.cpp \
+../src/Line.cpp \
+../src/Rectangle.cpp \
 ../src/Shape.cpp \
 ../src/main.cpp 
 
 OBJS += \
 ./src/Drawing.o \
+./src/Line.o \
+./src/Rectangle.o \
 ./src/Shape.o \
 ./src/main.o 
 
 CPP_DEPS += \
 ./src/Drawing.d \
+./src/Line.d \
+./src/Rectangle.d \
 ./src/Shape.d \
 ./src/main.d 
 
