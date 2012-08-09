@@ -169,8 +169,12 @@ void DrawingController::resize_shape(int rel_width, int rel_height) {
 	width += rel_width;
 	height += rel_height;
 
-	if (width < size_theshold) width = size_theshold;
-	if (height < size_theshold) height = size_theshold;
+	// Only the Line supports a negative width and height
+	// Limit all other shapes to the threshold size
+	if (dynamic_cast<Line *>(s) == NULL) {
+		if (width < size_theshold) width = size_theshold;
+		if (height < size_theshold) height = size_theshold;
+	}
 
 	s->set_width(width);
 	s->set_height(height);

@@ -62,11 +62,29 @@ void Shape::set_y(float y) {
 	_position.y = y;
 }
 bool Shape::is_at(point2d position) {
-	return (position.x >= _position.x &&
-			position.x < _position.x + _width &&
-			position.y >= _position.y &&
-			position.y < _position.y + _height);
+	if (_width >= 0 && _height >= 0) {
+		return (position.x >= _position.x &&
+				position.x < _position.x + _width &&
+				position.y >= _position.y &&
+				position.y < _position.y + _height);
+	} else if (_width < 0 && _height >= 0) {
+		return (position.x >= _position.x + _width &&
+				position.x < _position.x  &&
+				position.y >= _position.y &&
+				position.y < _position.y + _height);
+	} else if (_width >= 0 && _height < 0) {
+		return (position.x >= _position.x &&
+				position.x < _position.x + _width &&
+				position.y >= _position.y + _height &&
+				position.y < _position.y );
+	} else { // width < 0 && height < 0
+		return (position.x >= _position.x + _width &&
+				position.x < _position.x &&
+				position.y >= _position.y + _height &&
+				position.y < _position.y );
+	}
 }
+
 void Shape::calculate_highlight_color() {
 	float hue = hue_of(_color),
 		  sat = saturation_of(_color),
