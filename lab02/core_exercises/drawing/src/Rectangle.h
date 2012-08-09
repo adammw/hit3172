@@ -12,9 +12,6 @@
 
 class Rectangle: public Shape {
 public:
-	Rectangle();
-	virtual ~Rectangle();
-
 	void make_square();
 	void draw();
 };

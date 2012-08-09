@@ -5,6 +5,7 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../src/Drawing.cpp \
+../src/DrawingController.cpp \
 ../src/Line.cpp \
 ../src/Rectangle.cpp \
 ../src/Shape.cpp \
@@ -12,6 +13,7 @@ CPP_SRCS += \
 
 OBJS += \
 ./src/Drawing.o \
+./src/DrawingController.o \
 ./src/Line.o \
 ./src/Rectangle.o \
 ./src/Shape.o \
@@ -19,6 +21,7 @@ OBJS += \
 
 CPP_DEPS += \
 ./src/Drawing.d \
+./src/DrawingController.d \
 ./src/Line.d \
 ./src/Rectangle.d \
 ./src/Shape.d \

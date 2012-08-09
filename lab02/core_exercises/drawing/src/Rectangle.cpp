@@ -7,18 +7,11 @@
 
 #include "Rectangle.h"
 
-Rectangle::Rectangle() {
-	// TODO Auto-generated constructor stub
-
-}
-
-Rectangle::~Rectangle() {
-	// TODO Auto-generated destructor stub
-}
-
 void Rectangle::make_square() {
-	_width = _height;
-}
+	if ( _height > _width )
+		_width = _height;
+	else
+		_height = _width;}
 
 void Rectangle::draw() {
 	fill_rectangle(_color, _position.x, _position.y, _width, _height);

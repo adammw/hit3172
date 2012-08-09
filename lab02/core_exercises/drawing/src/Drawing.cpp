@@ -8,8 +8,8 @@
 #include "Drawing.h"
 
 Drawing::Drawing() {
-	// TODO Auto-generated constructor stub
-
+	_selected_shape = NULL;
+	_background_color = 0xffeeeecc;
 }
 
 Drawing::~Drawing() {
@@ -20,6 +20,14 @@ Drawing::~Drawing() {
 
 Shape* Drawing::get_seleted_shape() {
 	return _selected_shape;
+}
+
+color Drawing::get_background_color() {
+	return _background_color;
+}
+
+void Drawing::set_background_color(color bg) {
+	_background_color = bg;
 }
 
 void Drawing::add_shape(Shape* shape) {
@@ -35,6 +43,8 @@ void Drawing::select_shape_at_point(point2d point) {
 }
 
 void Drawing::draw() {
+	clear_screen(_background_color);
+
 	for ( size_t i = 0; i < _shapes.size(); i++ ) {
 		_shapes[i]->draw();
 	}

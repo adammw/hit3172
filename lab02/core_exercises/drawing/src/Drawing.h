@@ -17,12 +17,16 @@ class Drawing {
 private:
 	std::vector<Shape *> _shapes;
 	Shape * _selected_shape;
+	color _background_color;
 
 public:
 	Drawing();
-	virtual ~Drawing();
+	~Drawing();
 
 	Shape * get_seleted_shape();
+	color get_background_color();
+	void  set_background_color(color);
+	
 	void add_shape(Shape*);
 	void select_shape_at_point(point2d);
 	void draw();

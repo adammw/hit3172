@@ -7,7 +7,7 @@
 
 #include <iostream>
 #include "Shape.h"
-#include "Drawing.h"
+#include "DrawingController.h"
 
 using namespace std;
 
@@ -23,58 +23,27 @@ using namespace std;
 
 int main() {
 	open_audio();
-	open_graphics_window("Blackjack", 800, 600);
+	open_graphics_window("Drawing", 800, 600);
 	load_default_colors();
 
-	Drawing *d = new Drawing();
-
-	// Create a shape
-	Shape *s = new Rectangle();
-	s->set_color(ColorRed);
-	s->set_position(random_screen_point());
-	s->set_width(200);
-	s->set_height(200);
-
-	// Add to drawing
-	d->add_shape(s);
-
-	// Create a shape
-	s = new Line();
-	s->set_color(ColorGreen);
-	s->set_position(random_screen_point());
-	s->set_width(100);
-	s->set_height(250);
-
-	// Add to drawing
-	d->add_shape(s);
-
-	// Create a shape
-	s = new Rectangle();
-	s->set_color(ColorBlue);
-	s->set_position(random_screen_point());
-	s->set_width(250);
-	s->set_height(100);
-
-	// Add to drawing
-	d->add_shape(s);
-
-	// Forget s... its owned by d now
-	s = NULL;
+	Drawing* drawing = new Drawing();
+	DrawingController *controller = new DrawingController(drawing);
 
 	do
 	{
 		process_events();
 
-		clear_screen(ColorWhite);
+		controller->handle_input();
 
-		d->draw();
+		controller->draw();
 
 		draw_framerate(0,0);
 
 		refresh_screen();
 	} while ( ! window_close_requested() );
 
-	delete d;
+	delete controller;
+	delete drawing;
 
 	close_audio();
 

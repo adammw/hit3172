@@ -1,4 +1,6 @@
-src/main.d src/main.o: ../src/main.cpp ../src/Shape.h \
+src/DrawingController.d src/DrawingController.o:  \
+ ../src/DrawingController.cpp ../src/DrawingController.h ../src/Drawing.h \
+  ../src/Shape.h \
   /Users/adam/Dropbox/Swinburne/HIT3172/GitHub/lab02/core_exercises/drawing/lib/SwinGame.h \
   /Users/adam/Dropbox/Swinburne/HIT3172/GitHub/lab02/core_exercises/drawing/lib/Animations.h \
   /Users/adam/Dropbox/Swinburne/HIT3172/GitHub/lab02/core_exercises/drawing/lib/Types.h \
@@ -19,8 +21,11 @@ src/main.d src/main.o: ../src/main.cpp ../src/Shape.h \
   /Users/adam/Dropbox/Swinburne/HIT3172/GitHub/lab02/core_exercises/drawing/lib/UserInterface.h \
   /Users/adam/Dropbox/Swinburne/HIT3172/GitHub/lab02/core_exercises/drawing/lib/Utils.h \
   /Users/adam/Dropbox/Swinburne/HIT3172/GitHub/lab02/core_exercises/drawing/lib/Colors.h \
-  ../src/DrawingController.h ../src/Drawing.h ../src/Rectangle.h \
-  ../src/Line.h
+  ../src/Rectangle.h ../src/Line.h
+
+../src/DrawingController.h:
+
+../src/Drawing.h:
 
 ../src/Shape.h:
 
@@ -63,10 +68,6 @@ src/main.d src/main.o: ../src/main.cpp ../src/Shape.h \
 /Users/adam/Dropbox/Swinburne/HIT3172/GitHub/lab02/core_exercises/drawing/lib/Utils.h:
 
 /Users/adam/Dropbox/Swinburne/HIT3172/GitHub/lab02/core_exercises/drawing/lib/Colors.h:
-
-../src/DrawingController.h:
-
-../src/Drawing.h:
 
 ../src/Rectangle.h:
 

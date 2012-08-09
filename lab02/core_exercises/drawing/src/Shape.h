@@ -16,6 +16,7 @@ protected:
 	point2d _position;
 	int 	_width;
 	int 	_height;
+
 public:
 	Shape();
 	virtual ~Shape();

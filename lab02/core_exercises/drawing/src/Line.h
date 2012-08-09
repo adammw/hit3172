@@ -12,9 +12,6 @@
 
 class Line: public Shape {
 public:
-	Line();
-	virtual ~Line();
-
 	void draw();
 };
 
