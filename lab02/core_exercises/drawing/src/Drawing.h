@@ -23,7 +23,7 @@ public:
 	Drawing();
 	~Drawing();
 
-	Shape * get_seleted_shape();
+	Shape * get_selected_shape();
 	color get_background_color();
 	void  set_background_color(color);
 	

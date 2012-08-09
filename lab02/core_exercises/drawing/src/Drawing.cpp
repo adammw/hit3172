@@ -18,7 +18,7 @@ Drawing::~Drawing() {
 	}
 }
 
-Shape* Drawing::get_seleted_shape() {
+Shape* Drawing::get_selected_shape() {
 	return _selected_shape;
 }
 

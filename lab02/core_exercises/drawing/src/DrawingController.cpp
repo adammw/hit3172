@@ -93,7 +93,7 @@ color DrawingController::rotate_hue(color c) {
 }
 
 void DrawingController::change_color() {
-	Shape *s = _controlling->get_seleted_shape();
+	Shape *s = _controlling->get_selected_shape();
 
 	if (s == NULL) return;
 
