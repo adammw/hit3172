@@ -9,6 +9,9 @@
 #define DRAWINGCONTROLLER_H_
 
 #include "Drawing.h"
+#include "Rectangle.h"
+#include "Line.h"
+#include "Ellipse.h"
 
 #define DEFAULT_COLOR ColorGreen
 #define DEFAULT_WIDTH 200
@@ -17,6 +20,7 @@
 typedef enum drawing_element {
 	DRAWING_ELEMENT_LINE,
 	DRAWING_ELEMENT_RECTANGLE,
+	DRAWING_ELEMENT_ELLIPSE,
 	DRAWING_ELEMENT_MAX
 } drawing_element;
 
