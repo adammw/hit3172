@@ -26,6 +26,8 @@ private:
 	drawing_element _adding;
 
 	void add_new_shape(point2d point);
+	void move_shape(point2d point);
+	void resize_shape(int rel_width, int rel_height);
 	void change_color();
 	void change_bg_color();
 	color rotate_hue(color);

@@ -47,6 +47,40 @@ void DrawingController::handle_input() {
 		}
 	}
 
+	if (key_down(VK_LSHIFT) || key_down(VK_RSHIFT)) {
+		/* Arrow keys + Shift resize shape */
+		if (key_down(VK_LEFT)) {
+			resize_shape(-1,0);
+		}
+		if (key_down(VK_RIGHT)) {
+			resize_shape(1,0);
+		}
+		if (key_down(VK_UP)) {
+			resize_shape(0,-1);
+		}
+		if (key_down(VK_DOWN)) {
+			resize_shape(0,1);
+		}
+	} else {
+		/* Arrow keys move selected shape */
+		if (key_down(VK_LEFT)) {
+			point2d p = {-1,0};
+			move_shape(p);
+		}
+		if (key_down(VK_RIGHT)) {
+			point2d p = {1,0};
+			move_shape(p);
+		}
+		if (key_down(VK_UP)) {
+			point2d p = {0,-1};
+			move_shape(p);
+		}
+		if (key_down(VK_DOWN)) {
+			point2d p = {0,1};
+			move_shape(p);
+		}
+	}
+
 	/* add new shape on left click */
 	if (mouse_clicked(LEFT_BUTTON)) {
 		add_new_shape(mouse_position());
@@ -104,4 +138,34 @@ void DrawingController::change_bg_color() {
 	color c = _controlling->get_background_color();
 
 	_controlling->set_background_color(rotate_hue(c));
+}
+
+void DrawingController::move_shape(point2d relative_movement) {
+	Shape *s = _controlling->get_selected_shape();
+
+	if (s == NULL) return;
+
+	point2d location = s->get_position();
+	location.x += relative_movement.x;
+	location.y += relative_movement.y;
+	s->set_position(location);
+}
+
+void DrawingController::resize_shape(int rel_width, int rel_height) {
+	const int size_theshold = 20;
+	Shape *s = _controlling->get_selected_shape();
+
+	if (s == NULL) return;
+
+	int width = s->get_width(),
+		height = s->get_height();
+
+	width += rel_width;
+	height += rel_height;
+
+	if (width < size_theshold) width = size_theshold;
+	if (height < size_theshold) height = size_theshold;
+
+	s->set_width(width);
+	s->set_height(height);
 }
