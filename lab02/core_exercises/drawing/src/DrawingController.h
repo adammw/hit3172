@@ -17,16 +17,26 @@
 #define DEFAULT_WIDTH 200
 #define DEFAULT_HEIGHT 200
 
+/**
+ * The enum declares which subclasses of Shape is available to draw
+ */
 typedef enum drawing_element {
-	DRAWING_ELEMENT_LINE,
-	DRAWING_ELEMENT_RECTANGLE,
-	DRAWING_ELEMENT_ELLIPSE,
-	DRAWING_ELEMENT_MAX
+	DRAWING_ELEMENT_LINE,     //!< Line
+	DRAWING_ELEMENT_RECTANGLE,//!< Rectange
+	DRAWING_ELEMENT_ELLIPSE,  //!< Ellipse
+	DRAWING_ELEMENT_MAX       //!< The sentinel constant to mark the end of the enum
 } drawing_element;
 
+/**
+ * The DrawingController contains most of the
+ * logic controlling the application, it needs to
+ * know what Drawing object it is controlling
+ */
 class DrawingController {
 private:
+	/** The Drawing object the controller is controlling */
 	Drawing* _controlling;
+	/** controls which shape subclass will be drawn to the screen */
 	drawing_element _adding;
 
 	void add_new_shape(point2d point);

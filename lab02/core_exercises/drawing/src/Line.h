@@ -10,6 +10,11 @@
 
 #include "Shape.h"
 
+/**
+ * Line class holds all logic to creating and
+ * drawing lines to the Drawing, and inherits basic
+ * attributes and methods from the Shape class
+ */
 class Line: public Shape {
 public:
 	void draw();

@@ -11,11 +11,27 @@
 #include <vector>
 #include "Shape.h"
 
-
+/**
+ * The Drawing class holds references to all the shapes
+ * and can draw them all to the screen in order, as well
+ * as selecting, reordering and removing shapes on screen
+ */
 class Drawing {
 private:
+	/**
+	 * Vector array of the shape references,
+	 * creates a "has many" relationship
+	 */
 	std::vector<Shape *> _shapes;
+
+	/**
+	 * Pointer to the selected shape
+	 */
 	Shape * _selected_shape;
+
+	/**
+	 * The background colour of the drawing canvas
+	 */
 	color _background_color;
 
 public:

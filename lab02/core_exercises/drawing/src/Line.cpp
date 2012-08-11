@@ -7,10 +7,17 @@
 
 #include "Line.h"
 
+/**
+ * This method draws a diagonal line to the screen
+ * using the Shape's attributes
+ */
 void Line::draw() {
 	draw_line(_color, _position.x, _position.y, _position.x + _width, _position.y + _height);
 }
 
+/**
+ * This method draws crosses at each end of the line
+ */
 void Line::highlight() {
 	draw_line(	_highlight_color,
 				_position.x - HIGHLIGHT_BORDER_SIZE,

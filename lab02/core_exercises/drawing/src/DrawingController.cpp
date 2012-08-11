@@ -7,20 +7,34 @@
 
 #include "DrawingController.h"
 
+/**
+ * Initialises a new DrawingController
+ * @param drawing the Drawing object it is controlling
+ */
 DrawingController::DrawingController(Drawing* drawing) {
 	_adding = DRAWING_ELEMENT_RECTANGLE;
 	_controlling = drawing;
 }
 
-
+/**
+ * Gets the Drawing object the controller is controlling
+ * @return the Drawing object the controller is controlling
+ */
 Drawing* DrawingController::get_controlling() {
 	return _controlling;
 }
 
+/**
+ * Sets the Drawing object the controller is controlling
+ * @param drawing the Drawing object to control
+ */
 void DrawingController::set_controlling(Drawing* drawing) {
 	_controlling = drawing;
 }
 
+/**
+ * Draws all items on the screen needed for the program
+ */
 void DrawingController::draw() {
 	_controlling->draw();
 
@@ -41,6 +55,10 @@ void DrawingController::draw() {
 	draw_text_lines_with_font_named(text, color_black, color_transparent, "mavenpro", ALIGN_LEFT, 10, screen_height() - 26, screen_width() - 20, 16);
 }
 
+/**
+ * Handles input and changes state of the program
+ * and the Drawing / Shapes it controls
+ */
 void DrawingController::handle_input() {
 	/* "S" key toggles between possible shapes */
 	if (key_typed(VK_S)) {
@@ -119,6 +137,10 @@ void DrawingController::handle_input() {
 	}
 }
 
+/**
+ * Adds a new shape centered at a point
+ * @param point the point to add the shape
+ */
 void DrawingController::add_new_shape(point2d point) {
 	Shape* s;
 	switch(_adding) {
@@ -146,6 +168,11 @@ void DrawingController::add_new_shape(point2d point) {
 	_controlling->add_shape(s);
 }
 
+/**
+ * Changes the colour by rotating the hue of the colour
+ * @param c the original colour
+ * @return the hue-altered colour
+ */
 color DrawingController::rotate_hue(color c) {
 	float hue = hue_of(c),
 		  sat = saturation_of(c),
@@ -157,6 +184,9 @@ color DrawingController::rotate_hue(color c) {
 	return hsbcolor(hue, sat, bri);
 }
 
+/**
+ * Changes the hue of the colour of the selected shape
+ */
 void DrawingController::change_color() {
 	Shape *s = _controlling->get_selected_shape();
 
@@ -165,12 +195,19 @@ void DrawingController::change_color() {
 	s->set_color(rotate_hue(s->get_color()));
 }
 
+/**
+ * Changes the hue of the colour of the background colour
+ */
 void DrawingController::change_bg_color() {
 	color c = _controlling->get_background_color();
 
 	_controlling->set_background_color(rotate_hue(c));
 }
 
+/**
+ * Moves the selected shape by a relative amount
+ * @param relative_movement the relative amount to move the shape
+ */
 void DrawingController::move_shape(point2d relative_movement) {
 	Shape *s = _controlling->get_selected_shape();
 
@@ -182,6 +219,11 @@ void DrawingController::move_shape(point2d relative_movement) {
 	s->set_position(location);
 }
 
+/**
+ * Resizes the selected shape by a relative amount
+ * @param rel_width 	the relative change in width
+ * @param rel_height 	the relative change in height
+ */
 void DrawingController::resize_shape(int rel_width, int rel_height) {
 	const int size_theshold = 20;
 	Shape *s = _controlling->get_selected_shape();

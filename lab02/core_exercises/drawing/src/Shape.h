@@ -12,12 +12,40 @@
 
 #define HIGHLIGHT_BORDER_SIZE 5
 
+/**
+ * The Shape class is a generic class that all specific shapes in the
+ * Drawing program inherit their basic attributes from, so that colour,
+ * width, height and position is all handled by the Shape class once
+ * and any subclasses only need to implement the abstract draw and
+ * highlight methods.
+ * Data fields are marked as `protected` so that they can be directly
+ * accessed by any subclasses
+ */
 class Shape {
 protected:
+	/**
+	 * Fill colour of the shape
+	 *
+	 * This is needed so each object can have a independent colour
+	 * that can be changed an cycled to the next colour.
+	 */
 	color 	_color;
+
+	/**
+	 * Colour of the shape's highlight
+	 *
+	 * This is needed so the highlight colour matches the shapes colour
+	 * and is only recalculated when the colour is changed
+	 */
 	color 	_highlight_color;
+
+	/** Position of the shape */
 	point2d _position;
+
+	/** Width of shape */
 	int 	_width;
+
+	/** Height of shape */
 	int 	_height;
 
 	void calculate_highlight_color();

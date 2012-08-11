@@ -10,6 +10,11 @@
 
 #include "Shape.h"
 
+/**
+ * Rectangle class holds all logic to creating
+ * and drawing rectangles, and inherits basic
+ * attributes and methods from the Shape class
+ */
 class Rectangle: public Shape {
 public:
 	void make_square();

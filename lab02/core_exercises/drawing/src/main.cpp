@@ -41,7 +41,8 @@ int main() {
 
 		draw_framerate(0,0);
 
-		refresh_screen();
+		// Limit framerate to 60FPS
+		refresh_screen(60);
 	} while ( ! window_close_requested() );
 
 	delete controller;

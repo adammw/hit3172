@@ -10,6 +10,11 @@
 
 #include "Shape.h"
 
+/**
+ * Ellipse class holds all logic to creating and
+ * drawing ellipses, and inherits basic attributes
+ * and methods from the Shape class
+ */
 class Ellipse: public Shape {
 public:
 	void draw();
