@@ -14,6 +14,10 @@
 #define CARD_WIDTH 202.5
 #define CARD_HEIGHT 315
 
+/**
+ * The GraphicalCard class inherits the Card class because it has the same functionality as
+ * a Card, but it can also get and set it's position, and draw itself to the screen.
+ */
 class GraphicalCard: public Card {
 private:
 	point2d _position;
