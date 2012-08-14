@@ -1,6 +1,8 @@
 #ifndef COUNTER_H
 #define COUNTER_H
-
+/**
+ * The counter class is the specification for all the counter objects *
+ */
 class counter {
 private:
 	int _count;
