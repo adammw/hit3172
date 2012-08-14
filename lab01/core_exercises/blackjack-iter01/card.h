@@ -9,8 +9,12 @@
 #ifndef CARD_H_
 #define CARD_H_
 
+/**
+ * Card class represents a card and what the card knows and it can do
+ */
 class card {
 public:
+	// Enum for all possible card suits
 	enum suit {
 		CLUB,
 		DIAMOND,
@@ -18,6 +22,7 @@ public:
 		SPADE
 	};
 
+	// Enum for all possible card ranks
 	enum rank {
 		ACE = 1,
 		TWO,
