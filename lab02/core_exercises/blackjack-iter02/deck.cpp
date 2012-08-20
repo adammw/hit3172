@@ -24,6 +24,9 @@ deck::deck() {
 	_top_card = 0;
 }
 
+/**
+ * When destroyed, the Deck destructor deletes all card objects it contains
+ */
 deck::~deck() {
 	for (int i = 0; i < DECK_SIZE; i++) {
 		delete _cards[i];
