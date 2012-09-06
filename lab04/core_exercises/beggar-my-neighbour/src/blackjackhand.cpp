@@ -44,7 +44,9 @@ void blackjack_hand::evaluate() {
 			ace++;
 
 		/* Add the card's value to the score */
-		if (rank == card::ACE || rank >= card::JACK) {
+		if (rank == card::ACE) {
+			_score += 11;
+		} else if (rank >= card::JACK) {
 			_score += 10;
 		} else {
 			_score += rank;
