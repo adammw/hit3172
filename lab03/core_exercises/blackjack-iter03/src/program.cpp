@@ -44,7 +44,7 @@ int main() {
 			}
 		} else {
 			game->stand();
-			break;11
+			break;
 		}
 	}
 
