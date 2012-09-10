@@ -49,6 +49,9 @@ void DrawingController::draw() {
 	case DRAWING_ELEMENT_ELLIPSE:
 		text = "Drawing Ellipses";
 		break;
+	case DRAWING_ELEMENT_TRIANGLE:
+		text = "Drawing Triangles";
+		break;
 	default:
 		text = "Drawing Unknown Shape";
 	}
@@ -75,6 +78,9 @@ void DrawingController::handle_input() {
 	/* "E" key sets to ellipse */
 	if (key_typed(VK_E))
 		_adding = DRAWING_ELEMENT_ELLIPSE;
+	/* "T" key sets to triangle */
+	if (key_typed(VK_T))
+		_adding = DRAWING_ELEMENT_TRIANGLE;
 	/* "C" key changes colour */
 	if (key_down(VK_C)) {
 		if (key_down(VK_LSHIFT) || key_down(VK_RSHIFT)) {
@@ -152,6 +158,9 @@ void DrawingController::add_new_shape(point2d point) {
 		break;
 	case DRAWING_ELEMENT_ELLIPSE:
 		s = new Ellipse;
+		break;
+	case DRAWING_ELEMENT_TRIANGLE:
+		s = new Triangle;
 		break;
 	default:
 		return;

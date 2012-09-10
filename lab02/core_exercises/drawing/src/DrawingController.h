@@ -12,6 +12,7 @@
 #include "Rectangle.h"
 #include "Line.h"
 #include "Ellipse.h"
+#include "Triangle.h"
 
 #define DEFAULT_COLOR ColorGreen
 #define DEFAULT_WIDTH 200
@@ -24,6 +25,7 @@ typedef enum drawing_element {
 	DRAWING_ELEMENT_LINE,     //!< Line
 	DRAWING_ELEMENT_RECTANGLE,//!< Rectange
 	DRAWING_ELEMENT_ELLIPSE,  //!< Ellipse
+	DRAWING_ELEMENT_TRIANGLE, //!< Triangle
 	DRAWING_ELEMENT_MAX       //!< The sentinel constant to mark the end of the enum
 } drawing_element;
 
