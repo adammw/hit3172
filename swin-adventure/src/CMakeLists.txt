@@ -24,8 +24,10 @@ endif(DOXYGEN_FOUND)
 
 
 # All source files we need to compile the application:
-set(SRC
+set(SWINADVENTURE_SRC
     Identifiable.cpp
+)
+set(SRC ${SWINADVENTURE_SRC}
     main.cpp
 )
 # Libraries to link against
@@ -46,9 +48,11 @@ configure_file (
 include_directories("${PROJECT_BINARY_DIR}")
 
 # The binaries to be built:
+add_library(libswinadventure ${SWINADVENTURE_SRC})
 add_executable(swinadventure ${SRC})
 
 # Link against LIBS
+target_link_libraries(swinadventure libswinadventure)
 target_link_libraries(swinadventure ${LIBS})
 
 # Install rules

@@ -4,10 +4,7 @@ include("${PROJECT_SOURCE_DIR}/deps/gtest_add_tests.cmake")
 
 # All of the tests themselves
 set(TESTSRC
-    #Controller
-    #controller.cpp
-
-    # Test the whole
+    test_identifiable.cc
     test_main.cc
 )
 
@@ -15,6 +12,7 @@ set(TESTSRC
 set(TESTLIBS ${LIBS}
     gtest
     gtest_main
+    libswinadventure
 )
 
 include_directories("${gtest_SOURCE_DIR}/include")
