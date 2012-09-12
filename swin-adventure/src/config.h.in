@@ -1,0 +1,3 @@
+// the configured options and settings for swin-adventure
+#define SWINADVENTURE_VERSION_MAJOR @SWINADVENTURE_VERSION_MAJOR@
+#define SWINADVENTURE_VERSION_MINOR @SWINADVENTURE_VERSION_MINOR@
