@@ -18,14 +18,21 @@ set(TESTLIBS ${LIBS}
 )
 
 include_directories("${gtest_SOURCE_DIR}/include")
+include_directories("${PROJECT_SOURCE_DIR}/src")
+
+
+# Emulate make check
+add_custom_target(check COMMAND swinadventure_tests)
 
 # The binaries to be built:
 add_executable(swinadventure_tests ${TESTSRC})
+add_dependencies(swinadventure_tests gtest)
+add_dependencies(check swinadventure_tests)
 
 # Link against LIBS
 target_link_libraries(swinadventure_tests ${TESTLIBS})
 
-# Declare tests (delegate to testing framework)
+# Hack to make `make test` work... just.
+add_test("Building.Tests" "${CMAKE_COMMAND}" --build ${CMAKE_BINARY_DIR} --target swinadventure_tests)
 GTEST_ADD_TESTS("${EXECUTABLE_OUTPUT_PATH}/swinadventure_tests" "" ${TESTSRC})
-#add_test(RunUnitTests "${EXECUTABLE_OUTPUT_PATH}/swinadventure_tests")
 

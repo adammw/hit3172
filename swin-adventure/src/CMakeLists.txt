@@ -25,8 +25,8 @@ endif(DOXYGEN_FOUND)
 
 # All source files we need to compile the application:
 set(SRC
-    #controller.cpp
-    main.cc
+    Identifiable.cpp
+    main.cpp
 )
 # Libraries to link against
 set(LIBS ${LIBS}
