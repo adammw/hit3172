@@ -27,6 +27,7 @@ endif(DOXYGEN_FOUND)
 set(SWINADVENTURE_SRC
     GameObject.cpp
     Identifiable.cpp
+    Item.cpp
 )
 set(SRC ${SWINADVENTURE_SRC}
     main.cpp

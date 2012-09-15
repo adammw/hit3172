@@ -6,6 +6,7 @@ include("${PROJECT_SOURCE_DIR}/deps/gtest_add_tests.cmake")
 set(TESTSRC
     test_identifiable.cc
     test_game_object.cc
+    test_item.cc
     test_main.cc
 )
 
