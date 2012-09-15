@@ -6,7 +6,6 @@
  */
 
 #include "gtest/gtest.h"
-#include "custom_macros.h"
 
 #include "Item.h"
 
