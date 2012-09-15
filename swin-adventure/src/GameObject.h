@@ -8,7 +8,7 @@
 #ifndef GAMEOBJECT_H_
 #define GAMEOBJECT_H_
 
-#include <Identifiable.h>
+#include "Identifiable.h"
 #include <string>
 
 namespace swinadventure {
