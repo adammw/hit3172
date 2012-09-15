@@ -25,6 +25,7 @@ endif(DOXYGEN_FOUND)
 
 # All source files we need to compile the application:
 set(SWINADVENTURE_SRC
+    GameObject.cpp
     Identifiable.cpp
 )
 set(SRC ${SWINADVENTURE_SRC}
