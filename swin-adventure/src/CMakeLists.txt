@@ -28,6 +28,7 @@ set(SWINADVENTURE_SRC
     GameObject.cpp
     Identifiable.cpp
     Item.cpp
+    Inventory.cpp
 )
 set(SRC ${SWINADVENTURE_SRC}
     main.cpp
