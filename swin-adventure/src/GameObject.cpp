@@ -29,7 +29,7 @@ GameObject::GameObject(string ids[], size_t idlen, string name, string desc) : I
  * @return
  */
 string GameObject::get_description() {
-	get_full_description();
+	return get_full_description();
 }
 
 /**
@@ -47,7 +47,7 @@ string GameObject::get_name() {
  */
 string GameObject::get_short_description() {
 	ostringstream result;
-	result << "a " << _name << '(' << first_id() << ')';
+	result << "a " << _name << " (" << first_id() << ')';
 	return result.str();
 }
 
