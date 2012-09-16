@@ -37,13 +37,13 @@ string* LookCommand::object_name(vector<string>* text) {
 	// Check if the fourth word is "in", if so, locate the container before
 	// attempting to look_at_in
 	if (text->size() >= 3) {
-		string temp = (*text)[2];
+		string temp = (*text)[1];
 		transform(temp.begin(), temp.end(), temp.begin(), ::tolower);
-		if (temp.compare("at")) {
-			return &(*text)[3];
+		if (temp.compare("at") == 0) {
+			return &(*text)[2];
 		}
 	} else if (text->size() == 2) {
-		return &(*text)[2];
+		return &(*text)[1];
 	}
 
 	return NULL;
@@ -63,7 +63,7 @@ string* LookCommand::container_name(vector<string>* text) {
 	if (text->size() == 5) {
 		string temp = (*text)[4];
 		transform(temp.begin(), temp.end(), temp.begin(), ::tolower);
-		if (temp.compare("in")) {
+		if (temp.compare("in") == 0) {
 			return &(*text)[5];
 		}
 	}
