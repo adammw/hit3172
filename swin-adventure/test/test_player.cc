@@ -93,8 +93,8 @@ TEST_F(PlayerTest, LocateNothing) {
 TEST_F(PlayerTest, ShortDescription) {
 	Inventory* pi = _player->get_inventory();
 	ostringstream result;
-	result << "You are carrying: " << pi->get_item_list();
-	ASSERT_STROBJEQ(result.str(), _player->get_short_description());
+	result << "You are carrying: " << endl << pi->get_item_list();
+	ASSERT_STROBJEQ(result.str(), _player->get_full_description());
 }
 
 }  // namespace
