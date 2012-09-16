@@ -21,9 +21,13 @@ Inventory::Inventory() {
 
 /**
  * Inventory destructor
+ *
+ * Frees all items in the inventory
  */
 Inventory::~Inventory() {
-	// TODO Auto-generated destructor stub
+	for(vector<Item*>::iterator it = _items.begin(); it != _items.end(); ++it) {
+		delete *it;
+	}
 }
 
 /**
