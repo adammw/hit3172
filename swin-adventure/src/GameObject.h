@@ -31,7 +31,7 @@ public:
 	std::string get_name();
 
 	std::string get_short_description();
-	std::string get_full_description();
+	virtual std::string get_full_description();
 };
 
 } /* namespace swinadventure */
