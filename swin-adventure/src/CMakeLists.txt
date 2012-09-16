@@ -30,6 +30,8 @@ set(SWINADVENTURE_SRC
     Item.cpp
     Inventory.cpp
     Player.cpp
+    Command.cpp
+    LookCommand.cpp
 )
 set(SRC ${SWINADVENTURE_SRC}
     main.cpp
