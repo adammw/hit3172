@@ -102,7 +102,7 @@ string LookCommand::look_at_in(string id, IHaveInventory* container) {
 	GameObject* obj = container->locate(id);
 
 	if (NULL == obj) {
-		result << "I can't find the " << id;
+		result << "I can't find " << id;
 	} else {
 		result << obj->get_description();
 	}
@@ -121,7 +121,7 @@ string LookCommand::execute(Player* p, vector<string> text) {
 	IHaveInventory* container = locate_container(p, text);
 
 	if (NULL == container) {
-		result << "I can't find the " << *container_name(&text);
+		result << "I can't find " << *container_name(&text);
 	} else {
 		string* name = object_name(&text);
 		if (NULL == name) {
