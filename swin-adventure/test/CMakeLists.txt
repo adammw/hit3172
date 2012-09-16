@@ -8,6 +8,7 @@ set(TESTSRC
     test_game_object.cc
     test_item.cc
     test_inventory.cc
+    test_player.cc
     test_main.cc
 )
 
