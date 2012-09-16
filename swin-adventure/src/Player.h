@@ -10,6 +10,7 @@
 
 #include "GameObject.h"
 #include "Inventory.h"
+#include "IHaveInventory.h"
 #include <string>
 
 namespace swinadventure {
@@ -17,7 +18,7 @@ namespace swinadventure {
 /**
  * Class for a player which contains an inventory which can retrieve items
  */
-class Player : public swinadventure::GameObject {
+class Player : public swinadventure::GameObject, public swinadventure::IHaveInventory {
 private:
 	/** The player's inventory object */
 	Inventory* _inventory;
