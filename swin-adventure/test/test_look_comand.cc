@@ -10,6 +10,8 @@
 
 #include "LookCommand.h"
 #include "Player.h"
+#include "Inventory.h"
+#include "Bag.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -44,6 +46,15 @@ class LookCommandTest : public ::testing::Test {
 		std::string idents3[1] = {"hammer"};
 		i = new Item(idents3, 1, "cheap nasty hammer", "The hammer is very new - still has it's original sale stickers on it, but looks like it might break");
 		pi->put(i);
+
+		// Create a bag with a sword in it
+		std::string idents4[1] = {"bag"};
+		Bag* b = new Bag(idents4, 1, "bag", "A bag used for unit testing");
+		pi->put(b);
+		std::string idents5[1] = {"sword"};
+		i = new Item(idents5, 1, "sharp long-sword", "Be careful not to cut yourself of this sharp long-sword");
+		b->get_inventory()->put(i);
+
 
 		_lookCommand = new LookCommand;
 	}
@@ -109,6 +120,33 @@ TEST_F(LookCommandTest, LookAtGemInInventory) {
 	vector<string> tokens = SplitTextIntoCommands("look at gem in inventory");
 	string r = _lookCommand->execute(_player, tokens);
 	ASSERT_STROBJEQ("The small blood-red ruby is dulled from the years of wear", r);
+}
+
+/**
+ * Check sword's description is gem in bag
+ */
+TEST_F(LookCommandTest, LookAtSwordInBag) {
+	vector<string> tokens = SplitTextIntoCommands("look at sword in bag");
+	string r = _lookCommand->execute(_player, tokens);
+	ASSERT_STROBJEQ("Be careful not to cut yourself of this sharp long-sword", r);
+}
+
+/**
+ * Check sword cannot be found in a bag that doesn't exist
+ */
+TEST_F(LookCommandTest, LookAtSwordInNoBag) {
+	vector<string> tokens = SplitTextIntoCommands("look at sword in nobag");
+	string r = _lookCommand->execute(_player, tokens);
+	ASSERT_STROBJEQ("I can't find nobag", r);
+}
+
+/**
+ * Check gem cannot be found in bag
+ */
+TEST_F(LookCommandTest, LookAtNoGemInBag) {
+	vector<string> tokens = SplitTextIntoCommands("look at gem in bag");
+	string r = _lookCommand->execute(_player, tokens);
+	ASSERT_STROBJEQ("I can't find gem", r);
 }
 
 }  // namespace
