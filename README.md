@@ -18,3 +18,9 @@ The Player can locate items by first checking if the identifier matches itself (
 **What roles do other objects play in helping the Player achieve this goal?**
 
 The Inventory helps the Player to check each of the items in the inventory for a match, and each Item helps the Inventory check if it matches the identifier by inheriting the Game Object which inherits the Identifiable Object class allowing it to be asked "are you xxx?".
+
+**Explain the role of the “I Have Inventory” interface/protocol. Why is it included in the design?**
+
+The "I Have Inventory" interface is used to allow other objects to perform actions on any object that has an inventory regardless of their implementation and actual class. It is included in the design as it allows us to be more flexible in later code, and not have to worry about for example the differences between Bag and Player objects as they both have "promised" to implement the "I Have Inventory" interface.
+
+Also, we can add extra functionality to the Player object later for other features without distrubing the other objects that use the same interface.
