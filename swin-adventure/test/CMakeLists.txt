@@ -9,6 +9,7 @@ set(TESTSRC
     test_item.cc
     test_inventory.cc
     test_player.cc
+    test_bag.cc
     test_look_comand.cc
     test_main.cc
 )
