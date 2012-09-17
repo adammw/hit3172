@@ -54,12 +54,16 @@ int main (int argc, char *argv[])
 	b->get_inventory()->put(i);
 
 	std::string input;
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	cin.clear();
 	bool running = true;
 
 	// Loop reading commands from user
 	while(running) {
 		cout << "> ";
 		getline(cin, input);
+		if (input.size() == 0)
+			continue;
 
 		// Split string into vector
 		istringstream iss(input);
