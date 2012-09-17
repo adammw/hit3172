@@ -72,9 +72,12 @@ TEST_F(PlayerTest, LocateItself) {
  * Check the player can locate items
  */
 TEST_F(PlayerTest, LocateItems) {
-	ASSERT_EQ(_items[0], _player->locate("ruby"));
-	ASSERT_EQ(_items[1], _player->locate("crowbar"));
-	ASSERT_EQ(_items[2], _player->locate("hammer"));
+	// Run twice to ensure items are not removed
+	for (int i = 0; i < 2; i++) {
+		ASSERT_EQ(_items[0], _player->locate("ruby"));
+		ASSERT_EQ(_items[1], _player->locate("crowbar"));
+		ASSERT_EQ(_items[2], _player->locate("hammer"));
+	}
 }
 
 /**
