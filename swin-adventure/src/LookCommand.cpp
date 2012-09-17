@@ -9,6 +9,7 @@
 #include "GameObject.h"
 #include <sstream>
 #include <algorithm>
+#include <iostream>
 
 namespace swinadventure {
 
@@ -28,47 +29,47 @@ LookCommand::~LookCommand() {
 /**
  * Extract the object name from the command set
  * @param text
- * @return object name or NULL if not specified
+ * @return object name or empty string if not specified
  */
-string* LookCommand::object_name(vector<string>* text) {
+string LookCommand::object_name(vector<string> text) {
 	// TODO: This may be replaced with a nicer regex-based function in the future
 	// for more flexibility
 
 	// Check if the fourth word is "in", if so, locate the container before
 	// attempting to look_at_in
-	if (text->size() >= 3) {
-		string temp = (*text)[1];
+	if (text.size() >= 3) {
+		string temp = text[1];
 		transform(temp.begin(), temp.end(), temp.begin(), ::tolower);
 		if (temp.compare("at") == 0) {
-			return &(*text)[2];
+			return text[2];
 		}
-	} else if (text->size() == 2) {
-		return &(*text)[1];
+	} else if (text.size() == 2) {
+		return text[1];
 	}
 
-	return NULL;
+	return "";
 }
 
 /**
  * Extract the container name from the command set
  * @param text
- * @return container name or NULL if not specified
+ * @return container name or empty string if not specified
  */
-string* LookCommand::container_name(vector<string>* text) {
+string LookCommand::container_name(vector<string> text) {
 	// TODO: This may be replaced with a nicer regex-based function in the future
 	// for more flexibility
 
 	// Check if the fourth word is "in", if so, locate the container before
 	// attempting to look_at_in
-	if (text->size() == 5) {
-		string temp = (*text)[4];
+	if (text.size() == 5) {
+		string temp = text[3];
 		transform(temp.begin(), temp.end(), temp.begin(), ::tolower);
 		if (temp.compare("in") == 0) {
-			return &(*text)[5];
+			return text[4];
 		}
 	}
 
-	return NULL;
+	return "";
 }
 
 /**
@@ -79,15 +80,14 @@ string* LookCommand::container_name(vector<string>* text) {
  */
 IHaveInventory* LookCommand::locate_container(Player* p,
 		vector<string> text) {
-	string* container = container_name(&text);
+	string container = container_name(text);
 
 	// If container not specified, return the player
-	if (NULL == container)
+	if (container.size() == 0)
 		return p;
 
-	GameObject* obj = p->locate(*container);
-	// TODO: ensure GameObject is actually a container
-	return (IHaveInventory*)obj;
+	GameObject* obj = p->locate(container);
+	return dynamic_cast<IHaveInventory*>(obj);
 }
 
 /**
@@ -99,7 +99,9 @@ IHaveInventory* LookCommand::locate_container(Player* p,
  */
 string LookCommand::look_at_in(string id, IHaveInventory* container) {
 	ostringstream result;
-	GameObject* obj = container->locate(id);
+	GameObject* obj;
+
+	obj = container->locate(id);
 
 	if (NULL == obj) {
 		result << "I can't find " << id;
@@ -121,13 +123,13 @@ string LookCommand::execute(Player* p, vector<string> text) {
 	IHaveInventory* container = locate_container(p, text);
 
 	if (NULL == container) {
-		result << "I can't find " << *container_name(&text);
+		result << "I can't find " << container_name(text);
 	} else {
-		string* name = object_name(&text);
-		if (NULL == name) {
+		string name = object_name(text);
+		if (name.size() == 0) {
 			result << "I don't know what to look at";
 		} else {
-			result << look_at_in(*name, container);
+			result << look_at_in(name, container);
 		}
 	}
 
