@@ -11,6 +11,7 @@ set(TESTSRC
     test_player.cc
     test_bag.cc
     test_look_comand.cc
+    test_location.cc
     test_main.cc
 )
 
