@@ -10,6 +10,7 @@
 
 #include "Player.h"
 #include "Inventory.h"
+#include "Location.h"
 #include <sstream>
 
 namespace {
@@ -39,6 +40,20 @@ class PlayerTest : public ::testing::Test {
 		std::string idents3[1] = {"hammer"};
 		_items[2] = new Item(idents3, 1, "cheap nasty hammer", "The hammer is very new - still has it's original sale stickers on it, but looks like it might break");
 		pi->put(_items[2]);
+
+		// Create a location for the player
+		std::string idents4[1] = {"dungeon"};
+		_location = new Location(idents4, 1, "Dungeon", "A small damn spot, with chains locking you to the wall, a small grate allows some light in");
+		ASSERT_TRUE(NULL != _location);
+		_player->set_location(_location);
+
+		Inventory* li = _location->get_inventory();
+		ASSERT_TRUE(NULL != li);
+
+		// Add a sample item to location's inventory
+		std::string idents5[1] = {"key"};
+		_items[3] = new Item(idents5, 1, "old rusty key", "This key looks very old, almost as old as the grate and the dungeon itself");
+		li->put(_items[3]);
 	}
 
 	virtual ~PlayerTest() {
@@ -47,7 +62,8 @@ class PlayerTest : public ::testing::Test {
 
 	// Objects declared here can be used by all tests in the test case for Foo.
 	Player* _player;
-	Item* _items[3];
+	Item* _items[4];
+	Location* _location;
 };
 
 /**
@@ -69,14 +85,31 @@ TEST_F(PlayerTest, LocateItself) {
 }
 
 /**
- * Check the player can locate items
+ * Check the player can locate the current location
  */
-TEST_F(PlayerTest, LocateItems) {
+TEST_F(PlayerTest, LocateLocation) {
+	ASSERT_EQ(_location, _player->locate("dungeon"));
+}
+
+/**
+ * Check the player can locate items in inventory
+ */
+TEST_F(PlayerTest, LocateItemsInInventory) {
 	// Run twice to ensure items are not removed
 	for (int i = 0; i < 2; i++) {
 		ASSERT_EQ(_items[0], _player->locate("ruby"));
 		ASSERT_EQ(_items[1], _player->locate("crowbar"));
 		ASSERT_EQ(_items[2], _player->locate("hammer"));
+	}
+}
+
+/**
+ * Check the player can locate items in current location
+ */
+TEST_F(PlayerTest, LocateItemsInLocation) {
+	// Run twice to ensure items are not removed
+	for (int i = 0; i < 2; i++) {
+		ASSERT_EQ(_items[3], _player->locate("key"));
 	}
 }
 

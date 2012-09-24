@@ -16,6 +16,7 @@ std::string Player::_default_identifiers[] = {"me", "inventory"};
 
 Player::Player(string name, string desc) : GameObject((std::string*) _default_identifiers, 2, name, desc) {
 	_inventory = new Inventory;
+	_location = NULL;
 }
 
 Player::~Player() {
@@ -24,8 +25,10 @@ Player::~Player() {
 
 /**
  * Fetches a game object related to the player,
- * for example an Item in the Player's inventory
- * or the player themselves
+ * in this order:
+ * Firstly checks themselves,
+ * Secondly checks for object in inventory,
+ * Thirdly checks for object in current location
  * @param name	Game Object Identifier
  * @return pointer to Game Object
  */
@@ -34,8 +37,17 @@ GameObject* Player::locate(string name) {
 	if (are_you(name))
 		return this;
 
-	// Ask the inventory to fetch the object
-	return _inventory->fetch(name);
+	// Check our inventory
+	GameObject* result;
+	if ((result = _inventory->fetch(name)))
+		return result;
+
+	// Abort if we are not anywhere
+	if (!_location)
+		return NULL;
+
+	// Check our current location (or return null)
+	return _location->locate(name);
 }
 
 /**
@@ -55,6 +67,22 @@ string Player::get_full_description() {
  */
 Inventory* Player::get_inventory() {
 	return _inventory;
+}
+
+/**
+ * Get the current location
+ * @return a pointer to the object of the current location
+ */
+Location* Player::get_location() {
+	return _location;
+}
+
+/**
+ * Set the current location
+ * @param location	pointer to new location object
+ */
+void Player::set_location(Location* location) {
+	_location = location;
 }
 
 } /* namespace swinadventure */

@@ -10,6 +10,7 @@
 
 #include "GameObject.h"
 #include "Inventory.h"
+#include "Location.h"
 #include "IHaveInventory.h"
 #include <string>
 
@@ -23,6 +24,9 @@ private:
 	/** The player's inventory object */
 	Inventory* _inventory;
 
+	/** The player's current location */
+	Location* _location;
+
 	/** Default identifiers for the player */
 	static const std::string _default_identifiers[2];
 
@@ -34,6 +38,8 @@ public:
 	std::string get_full_description();
 
 	Inventory* get_inventory();
+	Location* get_location();
+	void set_location(Location* location);
 };
 
 } /* namespace swinadventure */
