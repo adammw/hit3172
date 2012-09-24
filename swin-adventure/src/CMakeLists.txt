@@ -33,6 +33,7 @@ set(SWINADVENTURE_SRC
     Command.cpp
     LookCommand.cpp
     Bag.cpp
+    Location.cpp
 )
 set(SRC ${SWINADVENTURE_SRC}
     main.cpp
