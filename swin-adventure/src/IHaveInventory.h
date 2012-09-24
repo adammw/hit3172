@@ -9,6 +9,7 @@
 #define IHAVEINVENTORY_H_
 
 #include "GameObject.h"
+#include "Inventory.h"
 #include <string>
 
 namespace swinadventure {
