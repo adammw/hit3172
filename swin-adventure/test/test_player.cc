@@ -43,7 +43,7 @@ class PlayerTest : public ::testing::Test {
 
 		// Create a location for the player
 		std::string idents4[1] = {"dungeon"};
-		_location = new Location(idents4, 1, "Dungeon", "A small damn spot, with chains locking you to the wall, a small grate allows some light in", NULL, 0);
+		_location = new Location(idents4, 1, "Dungeon", "A small damn spot, with chains locking you to the wall, a small grate allows some light in");
 		ASSERT_TRUE(NULL != _location);
 		_player->set_location(_location);
 

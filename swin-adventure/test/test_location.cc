@@ -24,7 +24,7 @@ class LocationTest : public ::testing::Test {
 
 	LocationTest() {
 		std::string idents0[1] = {"dungeon"};
-		_location = new Location(idents0, 1, "Dungeon", "A small damn spot, with chains locking you to the wall, a small grate allows some light in", NULL, 0);
+		_location = new Location(idents0, 1, "Dungeon", "A small damn spot, with chains locking you to the wall, a small grate allows some light in");
 		ASSERT_TRUE(NULL != _location);
 		Inventory* inventory = _location->get_inventory();
 		ASSERT_TRUE(NULL != inventory);
