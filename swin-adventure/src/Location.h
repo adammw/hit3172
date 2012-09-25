@@ -30,13 +30,15 @@ private:
 	/** The paths going from the location */
 	std::vector<Path*> _paths;
 public:
-	Location(std::string ids[], size_t idlen, std::string name, std::string desc, Path* paths[], size_t pathlen);
+	Location(std::string ids[], size_t idlen, std::string name, std::string desc);
 	virtual ~Location();
 
 	GameObject* locate(std::string name);
 	std::string get_full_description();
 
 	Inventory* get_inventory();
+	void add_path(Path* path);
+	void remove_path(Path* path);
 };
 
 } /* namespace swinadventure */

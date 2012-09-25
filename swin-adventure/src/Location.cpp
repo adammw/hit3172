@@ -12,13 +12,8 @@ namespace swinadventure {
 
 using namespace std;
 
-Location::Location(string ids[], size_t idlen, string name, string desc, Path* paths[], size_t pathlen) : GameObject(ids, idlen, name, desc) {
+Location::Location(string ids[], size_t idlen, string name, string desc) : GameObject(ids, idlen, name, desc) {
 	_inventory = new Inventory;
-
-	// Add paths to _paths vector
-	for (size_t i = 0; i < pathlen; i++){
-		_paths.push_back(paths[i]);
-	}
 }
 
 Location::~Location() {
@@ -70,6 +65,27 @@ string Location::get_full_description() {
  */
 Inventory* Location::get_inventory() {
 	return _inventory;
+}
+
+/**
+ * Add a path leading from this location
+ * @param path
+ */
+void Location::add_path(Path* path) {
+	_paths.push_back(path);
+}
+
+/**
+ * Remove a path leading from this location
+ * @param path
+ */
+void Location::remove_path(Path* path) {
+	for(vector<Path*>::iterator path_iter = _paths.begin(); path_iter != _paths.end(); ++path_iter) {
+		if (*path_iter == path) {
+			_paths.erase(path_iter);
+			return;
+		}
+	}
 }
 
 } /* namespace swinadventure */
