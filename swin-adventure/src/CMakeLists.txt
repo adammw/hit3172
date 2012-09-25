@@ -32,6 +32,7 @@ set(SWINADVENTURE_SRC
     Player.cpp
     Command.cpp
     LookCommand.cpp
+    MoveCommand.cpp
     Bag.cpp
     Location.cpp
     Path.cpp
