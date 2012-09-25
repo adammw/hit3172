@@ -12,6 +12,7 @@ set(TESTSRC
     test_bag.cc
     test_look_comand.cc
     test_location.cc
+    test_path.cc
     test_main.cc
 )
 
