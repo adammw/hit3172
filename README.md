@@ -24,3 +24,9 @@ The Inventory helps the Player to check each of the items in the inventory for a
 The "I Have Inventory" interface is used to allow other objects to perform actions on any object that has an inventory regardless of their implementation and actual class. It is included in the design as it allows us to be more flexible in later code, and not have to worry about for example the differences between Bag and Player objects as they both have "promised" to implement the "I Have Inventory" interface.
 
 Also, we can add extra functionality to the Player object later for other features without distrubing the other objects that use the same interface.
+
+**Iteration 4 (Locations) UML Class Diagram**
+![uml class diagram](https://raw.github.com/adammw/hit3172/case_study/diagrams/uml_class_iteration_4.png)
+
+**Iteration 4 (Locations) Player Locate Sequence Diagram**
+![uml sequence diagram](https://raw.github.com/adammw/hit3172/case_study/diagrams/player_locate_sequence.png)
