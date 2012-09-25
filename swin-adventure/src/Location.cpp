@@ -23,6 +23,11 @@ Location::Location(string ids[], size_t idlen, string name, string desc, Path* p
 
 Location::~Location() {
 	delete _inventory;
+
+	// free all paths
+	for(vector<Path*>::iterator path_iter = _paths.begin(); path_iter != _paths.end(); ++path_iter) {
+		delete *path_iter;
+	}
 }
 
 
