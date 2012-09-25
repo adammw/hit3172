@@ -28,9 +28,10 @@ private:
 	/** Final location to move the player to */
 	Location* _end_location;
 public:
-	Path(std::string ids[], size_t idlen, std::string name, std::string desc, Location* end_loc);
+	Path(std::string ids[], size_t idlen, std::string name, std::string desc);
 	virtual ~Path();
 
+	void set_end_location(Location* loc);
 	void move_player(Player* player);
 };
 
