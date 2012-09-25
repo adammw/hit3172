@@ -11,7 +11,7 @@ namespace swinadventure {
 
 using namespace std;
 
-Path::Path(string ids[], size_t idlen, string name, string desc, Location* end_loc) :
+Path::Path(string ids[], size_t idlen, string name, string desc) :
 	GameObject(ids, idlen, name, desc) { }
 
 Path::~Path() {
