@@ -16,6 +16,8 @@
 
 namespace swinadventure {
 
+class Location; //forward declaration
+
 /**
  * Class for a player which contains an inventory which can retrieve items
  */

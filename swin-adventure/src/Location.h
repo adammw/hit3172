@@ -17,6 +17,8 @@
 
 namespace swinadventure {
 
+class Path; //forward declaration
+
 /**
  * Class for location objects
  */

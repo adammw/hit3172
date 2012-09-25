@@ -15,6 +15,9 @@
 
 namespace swinadventure {
 
+class Location; //forward declaration
+class Player; //forward declaration
+
 /**
  * The Path class represents a Path to a location,
  * which can move a player and is identifiable and
