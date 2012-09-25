@@ -12,8 +12,13 @@ namespace swinadventure {
 
 using namespace std;
 
-Location::Location(string ids[], size_t idlen, string name, string desc) : GameObject(ids, idlen, name, desc) {
+Location::Location(string ids[], size_t idlen, string name, string desc, Path* paths[], size_t pathlen) : GameObject(ids, idlen, name, desc) {
 	_inventory = new Inventory;
+
+	// Add paths to _paths vector
+	for (size_t i = 0; i < pathlen; i++){
+		_paths.push_back(paths[i]);
+	}
 }
 
 Location::~Location() {
@@ -32,6 +37,12 @@ GameObject* Location::locate(string name) {
 	// Check ourselves
 	if (are_you(name))
 		return this;
+
+	// Check if one of our paths matches
+	for(vector<Path*>::iterator path_iter = _paths.begin(); path_iter != _paths.end(); ++path_iter) {
+		if ((*path_iter)->are_you(name))
+			return *path_iter;
+	}
 
 	// Ask the inventory to fetch the object
 	return _inventory->fetch(name);
