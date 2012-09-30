@@ -61,24 +61,22 @@ Path* MoveCommand::locate_path(Player* p, vector<string> text) {
 /**
  * Execute the move command
  * @param p		Player object pointer
- * @param text
+ * @param text	Command vector array
  * @return
  */
 string MoveCommand::execute(Player* p, vector<string> text) {
 	ostringstream result;
 	Path* path = locate_path(p, text);
+	string name = path_name(text);
 	if (path == NULL) {
-		string name = path_name(text);
 		if (name.size()) {
-			result << "I can't find " << path_name(text);
+			result << "I can't find " << name;
 		} else {
 			result << "I don't know where to go";
 		}
 	} else {
 		path->move_player(p);
-		//TODO: clarify the distinction between description seen from the start end
-		// from the description of the journey after taking the path
-		result << path->get_description();
+		result << path->get_outcome();
 	}
 	return result.str();
 }
