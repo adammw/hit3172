@@ -26,10 +26,10 @@ class PathTest : public ::testing::Test {
 		std::string idents[] = {"up" /* paths[0] */, "down" /* paths[1] */, "dungeon" /* location[0] */, "field" /* location[1] */ };
 
 		// Create paths
-		_paths[0] = new Path(idents, 1, "Crawl through the grate", "You somehow manage to crawl your way through the grate");
+		_paths[0] = new Path(idents, 1, "Crawl through the grate", "The grate has an opening that looks just large enough to crawl through", "After much squeezing, you somehow manage to crawl your way through the grate and end up outside in a field");
 		ASSERT_TRUE(NULL != _paths[0]);
 
-		_paths[1] = new Path(idents + 1, 1, "Jump down the hole", "There's a hole in the ground that seems to lead somewhere");
+		_paths[1] = new Path(idents + 1, 1, "Jump down the hole", "There's a hole in the ground that seems to lead somewhere", "You start to climb down but slip and slide down a dirty hole, ending up somewhere cold and damp");
 		ASSERT_TRUE(NULL != _paths[1]);
 
 		// Create locations

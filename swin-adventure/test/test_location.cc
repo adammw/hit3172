@@ -1,5 +1,5 @@
 /*
- * test_bag.cc
+ * test_location.cc
  *
  *  Created on: 17/09/2012
  *      Author: Adam Malcontenti-Wilson
@@ -11,6 +11,7 @@
 #include "Location.h"
 #include "Item.h"
 #include "Inventory.h"
+#include "Path.h"
 #include <sstream>
 
 namespace {
@@ -18,7 +19,7 @@ namespace {
 using namespace swinadventure;
 using namespace std;
 
-// The fixture for testing Items
+// The fixture for testing Locations
 class LocationTest : public ::testing::Test {
  protected:
 
@@ -41,6 +42,21 @@ class LocationTest : public ::testing::Test {
 		std::string idents3[1] = {"hammer"};
 		_items[2] = new Item(idents3, 1, "cheap nasty hammer", "The hammer is very new - still has it's original sale stickers on it, but looks like it might break");
 		inventory->put(_items[2]);
+
+		// Create paths
+		std::string idents4[2] = {"north","n"};
+		_paths[0] = new Path(idents4, 2, "Head north", "Head north through a dim tunnel", "You walk though the tunnel for what feels like an age, and end back up in the dungeon");
+		ASSERT_TRUE(NULL != _paths[0]);
+
+		std::string idents5[2] = {"south","s"};
+		_paths[1] = new Path(idents5, 2, "Head south", "Head south though a door", "The door is locked");
+		ASSERT_TRUE(NULL != _paths[1]);
+
+		// Link paths and locations
+		_paths[0]->set_end_location(_location);
+		_location->add_path(_paths[0]);
+		_paths[1]->set_end_location(_location);
+		_location->add_path(_paths[1]);
 	}
 
 	virtual ~LocationTest() {
@@ -50,24 +66,25 @@ class LocationTest : public ::testing::Test {
 	// Objects declared here can be used by all tests in the test case for Foo.
 	Location* _location;
 	Item* _items[3];
+	Path* _paths[2];
 };
 
 /**
- * Check the bag can identify itself
+ * Check the location can identify itself
  */
 TEST_F(LocationTest, Identifiable) {
 	ASSERT_TRUE(_location->are_you("dungeon"));
 }
 
 /**
- * Check the bag can locate itself
+ * Check the location can locate itself
  */
 TEST_F(LocationTest, LocateItself) {
 	ASSERT_EQ(_location, _location->locate("dungeon"));
 }
 
 /**
- * Check the bag can locate items
+ * Check the location can locate items
  */
 TEST_F(LocationTest, LocateItems) {
 	// Run twice to ensure items are not removed
@@ -79,12 +96,27 @@ TEST_F(LocationTest, LocateItems) {
 }
 
 /**
- * Check the bag cannot locate items it does not have
+ * Check the location can locate items
+ */
+TEST_F(LocationTest, LocatePaths) {
+	// Run twice to ensure items are not removed
+	for (int i = 0; i < 2; i++) {
+		ASSERT_EQ(_paths[0], _location->locate("north"));
+		ASSERT_EQ(_paths[1], _location->locate("south"));
+		ASSERT_EQ(_paths[0], _location->locate("n"));
+		ASSERT_EQ(_paths[1], _location->locate("s"));
+	}
+}
+
+/**
+ * Check the Location cannot locate items/paths it does not have
  */
 TEST_F(LocationTest, LocateNothing) {
 	ASSERT_EQ(NULL, _location->locate("sapphire"));
 	ASSERT_EQ(NULL, _location->locate("chocolate"));
 	ASSERT_EQ(NULL, _location->locate("newspaper"));
+	ASSERT_EQ(NULL, _location->locate("east"));
+	ASSERT_EQ(NULL, _location->locate("west"));
 }
 
 /**
