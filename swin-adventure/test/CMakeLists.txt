@@ -11,6 +11,7 @@ set(TESTSRC
     test_player.cc
     test_bag.cc
     test_look_comand.cc
+    test_move_command.cc
     test_location.cc
     test_path.cc
     test_main.cc
@@ -18,7 +19,7 @@ set(TESTSRC
 
 # Test libraries to link against
 set(TESTLIBS ${LIBS}
-    gtest
+    gtest 
     gtest_main
     libswinadventure
 )
