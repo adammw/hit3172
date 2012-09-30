@@ -17,7 +17,7 @@ using namespace std;
 
 string MoveCommand::_default_identifiers[] = {"move", "go"};
 
-MoveCommand::MoveCommand() {
+MoveCommand::MoveCommand() :Command((string*)_default_identifiers, 2) {
 	// TODO Auto-generated constructor stub
 
 }
@@ -76,8 +76,11 @@ string MoveCommand::execute(Player* p, vector<string> text) {
 		}
 	} else {
 		path->move_player(p);
+		//TODO: clarify the distinction between description seen from the start end
+		// from the description of the journey after taking the path
 		result << path->get_description();
 	}
+	return result.str();
 }
 
 } /* namespace swinadventure */
