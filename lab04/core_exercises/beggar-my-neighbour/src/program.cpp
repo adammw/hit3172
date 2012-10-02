@@ -142,10 +142,28 @@ void play_beggar() {
 }
 
 int main() {
+	unsigned game;
+	do {
+		cout << "Which game?" << endl;
+		cout << "1. Blackjack" << endl;
+		cout << "2. Beggar-My-Neighbour" << endl;
+		cout << ">> ";
+		cin >> game;
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	} while(game != 1 && game != 2);
+
 	/* Randomise the game - set random seed to time */
 	srand(time(NULL));
 
-	play_beggar();
+	switch(game) {
+	case 1:
+		play_blackjack();
+		break;
+	case 2:
+		play_beggar();
+		break;
+	}
 	return 0;
 }
 
