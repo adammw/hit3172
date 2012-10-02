@@ -7,6 +7,8 @@
 
 #include <sstream>
 #include <iostream>
+#include <iomanip>
+#include <limits>
 #include <cstdlib>
 #include "blackjackgame.h"
 #include "beggargame.h"
@@ -63,30 +65,47 @@ card* top_card(card_hand* hand) {
 
 void print_hand(card_hand* hand) {
 	card* top = top_card(hand);
-	cout << ((top) ? top->str() : "  ") << " (" << hand->get_count() << ")" << " \t";
+	cout << ((top) ? top->str() : "  ") << " (" << setw(2) << right << hand->get_count() << ")" << "        ";
 }
 
-string hand_name(beggar_game* game, card_hand* hand) {
-	return ((hand == game->get_player_hand()) ? "Player" : "Dealer");
+void print_beggar_table(beggar_game* game) {
+	unsigned count = game->get_player_count();
+	cout << endl << "Discard Pile   ";
+	for (unsigned i = 0; i < count; i++) {
+		cout << ((game->get_active_hand() == game->get_hand(i)) ? "<" : "");
+		cout << "Player #" << setw(3) << i;
+		cout << ((game->get_active_hand() == game->get_hand(i)) ? ">  " : "    ");
+	}
+	cout << endl;
+	print_hand(game->get_discard_hand());
+	for (unsigned i = 0; i < count; i++) {
+		print_hand(game->get_hand(i));
+	}
+	cout << endl << endl;
 }
 
 void play_beggar() {
 //TODO: need to redo class diagram with methods and everything properely
-	beggar_game* game = new beggar_game;
+	unsigned num_players;
+	do {
+		cout << "How many players? ";
+		cin >> num_players;
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	} while(num_players < 2 || num_players > 50);
+
+	beggar_game* game = new beggar_game(num_players);
 
 	/* Start the Game */
 	game->start();
 
 	do {
 		/* Output card descriptions */
-		cout << "Player \tDiscard \tDealer" << endl;
-		print_hand(game->get_player_hand());
-		print_hand(game->get_discard_hand());
-		print_hand(game->get_dealer_hand());
-		cout << endl << endl;
+		print_beggar_table(game);
 
 		/* Deal the card */
-		cout << hand_name(game, game->get_active_hand()) << " puts down a ";
+		unsigned orig_player = game->get_active_player_index();
+		cout << "Player #" << orig_player << " puts down a ";
 		card* card = game->deal_card();
 
 		/* Make sure it's face up and print it (then put it back if needed) */
@@ -97,18 +116,27 @@ void play_beggar() {
 		if (face_down)
 			card->turn_over();
 
-		/* Print the penalty cards remaining */
-		int penalty = game->get_penalty_cards_remaining();
-		if (penalty > 0) {
-			cout << " (" << hand_name(game, game->get_active_hand()) << " has " << game->get_penalty_cards_remaining() << " penalty cards remaining)";
-		} else if (penalty == -1 && game->get_discard_hand()->get_count() == 0) {
-			cout << " (" << hand_name(game, game->get_active_hand()) << " gets discard pile)";
+		/* Check if the player lost */
+		if (game->is_game_over_for_player(orig_player)) {
+			cout << ", and is now out of cards";
 		}
-		cout << endl;
+
+		/* Print the penalty cards remaining */
+		if (!game->is_game_over()) {
+			if (game->is_paying_penalty()) {
+				cout << " (Player #" << game->get_active_player_index() << " has " << game->get_penalty_cards_remaining() << " penalty cards remaining)";
+			} else if (game->get_discard_hand()->get_count() == 0) {
+				cout << " (Player #" << game->get_active_player_index() << " gets discard pile)";
+			}
+		}
+		cout << endl << endl;
 	} while(!game->is_game_over());
 
+	/* Final description*/
+	print_beggar_table(game);
+
 	/* Win/lose message */
-	cout << "You " << ((game->player_won()) ? "won" : "lost") << "!" << endl;
+	cout << "Player #" << game->get_active_player_index() << " wins!" << endl;
 
 	delete game;
 }
