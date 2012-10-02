@@ -30,3 +30,9 @@ Also, we can add extra functionality to the Player object later for other featur
 
 **Iteration 4 (Locations) Player Locate Sequence Diagram**
 ![uml sequence diagram](https://raw.github.com/adammw/hit3172/case_study/diagrams/player_locate_sequence.png)
+
+**Iteration 5 (Paths and Moving) UML Class Diagram**
+![uml class diagram](https://raw.github.com/adammw/hit3172/case_study/diagrams/uml_class_iteration_5.png)
+
+**Iteration 4 (Paths and Moving) Move Command Sequence Diagram**
+![uml sequence diagram](https://raw.github.com/adammw/hit3172/case_study/diagrams/move_command_sequence.png)
