@@ -257,6 +257,20 @@ Identifiers should be clear and name what the class or variable is or contains r
 
 *Parameter:* A descriptive name clearly identifing purpose in Camel Case, without prefixes, e.g. `value`
 
+OO Principals
+-------------
+### Encapsulation
+Encapsulation relates to the data-hiding property of classes and objects, in that an object defines a public interface and it's implementation details are kept private only accessable to the object itself. Other objects don't have to worry about how an object works, and can delegate the responsibility of that task to another object's implementation. Unlike raw data and procedural code where the data and methods are essentially separate, Objects know things and can do things - they bind the data and methods in a nice 'capsule' called an Object.
+
+### Abstraction
+Abstraction is the idea that objects should match their real-world counterparts, in that their classification and roles should match what they are in the real world. Responsiblitiy driven design determines which ois bjects are responsible for what, and how the multiple objects collaborate to achieve the task. Abstraction then states that the objects capture only the details that are relevant to the task and are required, for example in our Card Games, the type of paper of the card is irrelevant, and not included. Abstraction also relates to the idea of having interfaces which specifiy the minimum that any object implementing that interface should be able to do.
+
+### Inheritance
+Inheritance is the property of inheriting functionality and data from parent classes, which can be then used to create generalised classes and specialised classes that inherit them to reduce code duplication of features common to all objects in a class.
+
+### Polymorphism
+Polymorphism is the ability of a object to work with a generalised type in code, but actually work with any class that inherits that type at run time. This enables methods to be as general as possible (while still being specific enough that the features required of an object are supported), allowing code to work with many different types of objects without having any extra logic. 
+
 Sources
 -------
  * HIT3172 Lectures
