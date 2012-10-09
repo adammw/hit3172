@@ -4,7 +4,9 @@
 #include "Player.h"
 #include "Item.h"
 #include "Inventory.h"
-#include "LookCommand.h"
+#include "Location.h"
+#include "Path.h"
+#include "CommandProcessor.h"
 #include "Bag.h"
 #include <iostream>
 #include <string>
@@ -53,6 +55,27 @@ int main (int argc, char *argv[])
 	i = new Item(idents4, 2, "small blood-red ruby", "The small blood-red ruby is dulled from the years of wear");
 	b->get_inventory()->put(i);
 
+	std::string idents[] = {"up" /* paths[0] */, "down" /* paths[1] */, "dungeon" /* location[0] */, "field" /* location[1] */ };
+
+	// Create paths
+	Path* paths[2];
+	paths[0] = new Path(idents, 1, "Crawl through the grate", "The grate has an opening that looks just large enough to crawl through", "After much squeezing, you somehow manage to crawl your way through the grate and end up outside in a field");
+	paths[1] = new Path(idents + 1, 1, "Jump down the hole", "There's a hole in the ground that seems to lead somewhere", "You start to climb down but slip and slide down a dirty hole, ending up somewhere cold and damp");
+
+	// Create locations
+	Location* locations[2];
+	locations[0] = new Location(idents + 2, 1, "Dungeon", "A small damn spot, with chains locking you to the wall, a small grate allows some light in");
+	locations[1] = new Location(idents + 3, 1, "A Field", "A large green field");
+
+	// Link paths and locations
+	paths[0]->set_end_location(locations[1]);
+	locations[0]->add_path(paths[0]);
+	paths[1]->set_end_location(locations[0]);
+	locations[1]->add_path(paths[1]);
+
+	// Start player in location
+	p->set_location(locations[0]);
+
 	std::string input;
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	cin.clear();
@@ -78,8 +101,8 @@ int main (int argc, char *argv[])
 		}
 
 		// Execute Look Command
-		LookCommand* lookCmd = new LookCommand;
-		cout << lookCmd->execute(p, tokens) << endl << endl;
+		CommandProcessor* cmdProcessor = new CommandProcessor;
+		cout << cmdProcessor->execute(p, tokens) << endl << endl;
 	}
 
 	// Free objects

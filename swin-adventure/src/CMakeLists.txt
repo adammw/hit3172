@@ -31,6 +31,7 @@ set(SWINADVENTURE_SRC
     Inventory.cpp
     Player.cpp
     Command.cpp
+    CommandProcessor.cpp
     LookCommand.cpp
     MoveCommand.cpp
     Bag.cpp
