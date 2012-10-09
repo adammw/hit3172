@@ -33,6 +33,7 @@ private:
 public:
 	Path(std::string ids[], size_t idlen, std::string name, std::string desc, std::string outcome);
 	virtual ~Path();
+	virtual std::string get_short_description();
 
 	void set_end_location(Location* loc);
 	void move_player(Player* player);

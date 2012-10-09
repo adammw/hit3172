@@ -6,6 +6,7 @@
  */
 
 #include "Path.h"
+#include <sstream>
 
 namespace swinadventure {
 
@@ -51,6 +52,17 @@ void Path::set_end_location(Location* loc) {
  */
 string Path::get_outcome() {
 	return _outcome_description;
+}
+
+/**
+ * Get a short description of the object in the form:
+ * "a <name> (<first_id>)"
+ * @return
+ */
+string Path::get_short_description() {
+	ostringstream result;
+	result << get_name() << " (" << first_id() << ')';
+	return result.str();
 }
 
 } /* namespace swinadventure */

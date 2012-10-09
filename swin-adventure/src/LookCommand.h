@@ -25,7 +25,9 @@ private:
 	std::string object_name( std::vector<std::string> text );
 	std::string container_name( std::vector<std::string> text );
 	IHaveInventory* locate_container( Player* p, std::vector<std::string> text );
+	std::string look_at( GameObject* obj );
 	std::string look_at_in( std::string id, IHaveInventory *container );
+	bool is_here( std::string id );
 public:
 	LookCommand();
 	virtual ~LookCommand();

@@ -105,6 +105,51 @@ TEST_F(LookCommandTest, LookAtGem) {
 }
 
 /**
+ * Check location description when looking
+ */
+TEST_F(LookCommandTest, LookAtLocation) {
+	string ident[] = {"dungeon"};
+	Location* loc =  new Location(ident, 1, "Dungeon", "A small damn spot, with chains locking you to the wall, a small grate allows some light in");
+	_player->set_location(loc);
+	vector<string> tokens = SplitTextIntoCommands("look");
+	string r = _lookCommand->execute(_player, tokens);
+	ASSERT_STROBJEQ(loc->get_description(), r);
+}
+
+
+/**
+ * Check you don't crash when looking without location
+ */
+TEST_F(LookCommandTest, LookAtNoLocation) {
+	vector<string> tokens = SplitTextIntoCommands("look");
+	string r = _lookCommand->execute(_player, tokens);
+	ASSERT_STROBJEQ("You aren't anywhere", r);
+}
+
+/**
+ * Check location description when looking
+ */
+TEST_F(LookCommandTest, LookAtLocationHere) {
+	string ident[] = {"dungeon"};
+	Location* loc =  new Location(ident, 1, "Dungeon", "A small damn spot, with chains locking you to the wall, a small grate allows some light in");
+	_player->set_location(loc);
+	vector<string> tokens = SplitTextIntoCommands("look here");
+	string r = _lookCommand->execute(_player, tokens);
+	ASSERT_STROBJEQ(loc->get_description(), r);
+}
+
+
+/**
+ * Check you don't crash when looking without location
+ */
+TEST_F(LookCommandTest, LookAtNoLocationHere) {
+	vector<string> tokens = SplitTextIntoCommands("look here");
+	string r = _lookCommand->execute(_player, tokens);
+	ASSERT_STROBJEQ("You aren't anywhere", r);
+}
+
+
+/**
  * Check that it can't find items you don't have
  */
 TEST_F(LookCommandTest, LookAtUnk) {

@@ -35,6 +35,8 @@ public:
 
 	GameObject* locate(std::string name);
 	std::string get_full_description();
+	std::string get_path_list();
+	std::string get_path_list(std::string prefix, std::string sep);
 
 	Inventory* get_inventory();
 	void add_path(Path* path);

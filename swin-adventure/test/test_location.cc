@@ -126,7 +126,9 @@ TEST_F(LocationTest, LocateNothing) {
 TEST_F(LocationTest, ShortDescription) {
 	Inventory* inventory = _location->get_inventory();
 	ostringstream expected;
-	expected << _location->first_id() << " contains: " << endl << inventory->get_item_list();
+	expected << "A small damn spot, with chains locking you to the wall, a small grate allows some light in" << endl;
+	expected << _location->first_id() << " contains: " << endl << inventory->get_item_list() << endl;
+	expected << "paths:" << endl << _location->get_path_list();
 	ASSERT_STROBJEQ(expected.str(), _location->get_full_description());
 }
 

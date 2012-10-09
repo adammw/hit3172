@@ -42,6 +42,8 @@ string LookCommand::object_name(vector<string> text) {
 		transform(temp.begin(), temp.end(), temp.begin(), ::tolower);
 		if (temp.compare("at") == 0) {
 			return text[2];
+		} else {
+			return text[1];
 		}
 	} else if (text.size() == 2) {
 		return text[1];
@@ -86,6 +88,7 @@ IHaveInventory* LookCommand::locate_container(Player* p,
 	if (container.size() == 0)
 		return p;
 
+	// Get the player to locate the container or return NULL
 	GameObject* obj = p->locate(container);
 	return dynamic_cast<IHaveInventory*>(obj);
 }
@@ -106,10 +109,26 @@ string LookCommand::look_at_in(string id, IHaveInventory* container) {
 	if (NULL == obj) {
 		result << "I can't find " << id;
 	} else {
-		result << obj->get_description();
+		result << look_at(obj);
 	}
 
 	return result.str();
+}
+
+string LookCommand::look_at(GameObject* obj) {
+	ostringstream result;
+	result << obj->get_description();
+	return result.str();
+}
+
+/**
+ * Check if the id is "here" (case insensitive)
+ * @param id
+ * @return
+ */
+bool LookCommand::is_here(std::string id) {
+	transform(id.begin(), id.end(), id.begin(), ::tolower);
+	return (id.compare("here") == 0);
 }
 
 /**
@@ -121,13 +140,29 @@ string LookCommand::look_at_in(string id, IHaveInventory* container) {
 string LookCommand::execute(Player* p, vector<string> text) {
 	ostringstream result;
 	IHaveInventory* container = locate_container(p, text);
+	string container_name_str = container_name(text);
 
+	// If container could not be found (only if specified)
 	if (NULL == container) {
-		result << "I can't find " << container_name(text);
+		result << "I can't find " << container_name_str;
 	} else {
 		string name = object_name(text);
+		Location* loc = p->get_location();
 		if (name.size() == 0) {
-			result << "I don't know what to look at";
+			// Show the location if just "look"
+			if (loc != NULL) {
+				result << look_at(loc);
+			} else {
+				result << "You aren't anywhere";
+			}
+		// Check for "look here"
+		} else if (is_here(name)) {
+			if (loc == NULL) {
+				result << "You aren't anywhere";
+			} else {
+				result << look_at(p->get_location());
+			}
+		// Otherwise, attempt to look at in the container
 		} else {
 			result << look_at_in(name, container);
 		}

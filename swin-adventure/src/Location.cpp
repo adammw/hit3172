@@ -54,8 +54,43 @@ GameObject* Location::locate(string name) {
  */
 string Location::get_full_description() {
 	ostringstream result;
+	result << GameObject::get_full_description() << endl;
 	result << first_id() << " contains: " << endl;
-	result << _inventory->get_item_list();
+	result << _inventory->get_item_list() << endl;
+	result << "paths:" << endl;
+	result << get_path_list();
+	return result.str();
+}
+
+/**
+ * Get a string description of the paths in the location
+ * @return
+ */
+string Location::get_path_list() {
+	return get_path_list("\t","\r\n");
+}
+
+/**
+ * Get a string description of the paths in the location
+ * @param prefix	The prefix to add before each path
+ * @param sep		The string to separate each path (e.g. "\n")
+ * @return
+ */
+string Location::get_path_list(string prefix, string sep) {
+	ostringstream result;
+
+	// Loop through all items adding their short descriptions
+	for(vector<Path*>::iterator it = _paths.begin(); it != _paths.end(); ++it) {
+		Path* path = *it;
+
+		result << prefix << path->get_short_description();
+
+		// Don't add separator on last item
+		if (path != _paths.back()) {
+			result << sep;
+		}
+	}
+
 	return result.str();
 }
 
