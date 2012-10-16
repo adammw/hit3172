@@ -6,7 +6,7 @@ enable_testing()
 
 # The version number
 set (SWINADVENTURE_VERSION_MAJOR 0)
-set (SWINADVENTURE_VERSION_MINOR 5)
+set (SWINADVENTURE_VERSION_MINOR 6)
 
 # Set binary output directory
 set (EXECUTABLE_OUTPUT_PATH "${PROJECT_BINARY_DIR}/bin")
